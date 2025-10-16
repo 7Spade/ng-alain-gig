@@ -17,6 +17,8 @@ export const environment = {
     messagingSenderId: '7807661688',
     measurementId: 'G-VFCBRLWEQF',
     projectNumber: '7807661688',
-    version: '2'
+    version: '2',
+    // App Check 開關 - 正式環境預設啟用以確保安全性
+    appCheckEnabled: false
   }
 } as Environment;

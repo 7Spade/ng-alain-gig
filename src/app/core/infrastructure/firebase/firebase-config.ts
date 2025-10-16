@@ -26,6 +26,14 @@ export function getFirebaseConfig() {
  * 保護 Firebase 服務免受濫用
  */
 export function getFirebaseAppCheckConfig() {
+  const config = environment?.['firebase'];
+
+  // 檢查 App Check 是否啟用
+  if (!config?.appCheckEnabled) {
+    console.warn('Firebase App Check is disabled in environment configuration');
+    return null;
+  }
+
   return {
     provider: '6LeGl-wrAAAAALTgTmQN5XbGLB2hVKhcySGyBIXI',
     isTokenAutoRefreshEnabled: true

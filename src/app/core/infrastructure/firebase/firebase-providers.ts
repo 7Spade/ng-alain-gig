@@ -17,6 +17,7 @@ import { getStorage, provideStorage } from '@angular/fire/storage';
 import { getRemoteConfig, provideRemoteConfig } from '@angular/fire/remote-config';
 
 import { getFirebaseConfig, getFirebaseAppCheckConfig } from './firebase-config';
+import { flush } from '@angular/core/testing';
 
 /**
  * Firebase 所有服務的 Providers 配置
@@ -45,15 +46,23 @@ export const firebaseProviders: Array<Provider | EnvironmentProviders> = [
   ScreenTrackingService,
   UserTrackingService,
 
-  // 4. Firebase App Check (安全驗證) - 絕對保護
-  provideAppCheck(() => {
-    const appCheckConfig = getFirebaseAppCheckConfig(); // 🚨 延遲載入配置
-    const provider = new ReCaptchaEnterpriseProvider(appCheckConfig.provider);
-    return initializeAppCheck(getApp(), {
-      provider,
-      isTokenAutoRefreshEnabled: appCheckConfig.isTokenAutoRefreshEnabled
-    });
-  }),
+  // 4. Firebase App Check (安全驗證) - 條件式啟用
+  ...(getFirebaseAppCheckConfig()
+    ? [
+        provideAppCheck(() => {
+          const appCheckConfig = getFirebaseAppCheckConfig(); // 🚨 延遲載入配置
+          if (!appCheckConfig) {
+            throw new Error('App Check configuration is required but not available');
+          }
+
+          const provider = new ReCaptchaEnterpriseProvider(appCheckConfig.provider);
+          return initializeAppCheck(getApp(), {
+            provider,
+            isTokenAutoRefreshEnabled: appCheckConfig.isTokenAutoRefreshEnabled
+          });
+        })
+      ]
+    : []),
 
   // 5. Firebase Firestore (資料庫)
   provideFirestore(() => getFirestore()),

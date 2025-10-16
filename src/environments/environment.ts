@@ -23,7 +23,9 @@ export const environment = {
     messagingSenderId: '7807661688',
     measurementId: 'G-VFCBRLWEQF',
     projectNumber: '7807661688',
-    version: '2'
+    version: '2',
+    // App Check 開關 - 開發環境預設停用以避免 403 錯誤
+    appCheckEnabled: false
   },
   providers: [provideMockConfig({ data: MOCKDATA })],
   interceptorFns: [mockInterceptor]
