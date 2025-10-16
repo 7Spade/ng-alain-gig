@@ -21,7 +21,7 @@ export const featuresRoutes: Routes = [
   },
   {
     path: 'project',
-    loadChildren: () => import('./user/presentation/pages/dashboard/workplace/workplace.component').then(m => m.DashboardWorkplaceComponent)
+    loadChildren: () => import('./project/routes').then(m => m.routes)
   },
   {
     path: 'social',

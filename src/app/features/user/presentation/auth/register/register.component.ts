@@ -4,6 +4,7 @@ import { Router, RouterLink } from '@angular/router';
 import { I18nPipe } from '@delon/theme';
 import { Auth } from '@angular/fire/auth';
 import { MatchControl } from '@delon/util/form';
+import { FirebaseAuthService } from '../../../../../core/auth/services/firebase-auth.service';
 import { NzAlertModule } from 'ng-zorro-antd/alert';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzSafeAny } from 'ng-zorro-antd/core/types';
@@ -40,16 +41,14 @@ export class UserRegisterComponent implements OnDestroy {
   private readonly auth = inject(Auth);
 
   // 使用服務統一入口
-  private readonly firebaseAuth = inject(
-    import('../../../core/auth/services/firebase-auth.service').then(m => m.FirebaseAuthService) as unknown as any
-  );
+  private readonly firebaseAuth = inject(FirebaseAuthService);
 
   // #region fields
 
   form = inject(FormBuilder).nonNullable.group(
     {
       mail: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6), UserRegisterComponent.checkPassword.bind(this)]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
       confirm: ['', [Validators.required, Validators.minLength(6)]],
       mobilePrefix: ['+86'],
       mobile: ['', [Validators.required, Validators.pattern(/^1\d{10}$/)]],
@@ -132,7 +131,9 @@ export class UserRegisterComponent implements OnDestroy {
     this.loading = true;
     this.cdr.detectChanges();
     try {
-      await this.firebaseAuth.register(data.mail!, data.password!);
+      const email = data.mail as string;
+      const password = data.password as string;
+      await this.firebaseAuth.register(email, password);
       this.router.navigate(['passport', 'register-result'], { queryParams: { email: data.mail } });
     } catch (e: any) {
       this.error = e?.message || 'Register failed';
