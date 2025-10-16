@@ -46,8 +46,8 @@ export const firebaseProviders: Array<Provider | EnvironmentProviders> = [
 
   // 4. Firebase App Check (安全驗證) - 絕對保護
   provideAppCheck(() => {
-    // TODO get a reCAPTCHA Enterprise here https://console.cloud.google.com/security/recaptcha?project=_
-    const provider = new ReCaptchaEnterpriseProvider('6LeBOusrAAAAAAveKbstwHfHbGKcY1wyvHA10c6s');
+    // 使用統一配置的 reCAPTCHA Enterprise site key
+    const provider = new ReCaptchaEnterpriseProvider(firebaseAppCheckConfig.provider);
     return initializeAppCheck(getApp(), {
       provider,
       isTokenAutoRefreshEnabled: firebaseAppCheckConfig.isTokenAutoRefreshEnabled
