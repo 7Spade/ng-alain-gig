@@ -10,22 +10,22 @@ env:
       - BUILD
       - RUNTIME
   - variable: NEXT_PUBLIC_FIREBASE_API_KEY
-    value: AIzaSyCJ-eayGjJwBKsNIh3oEAG2GjbfTrvAMEI
+    value: 'AIzaSyCJ-eayGjJwBKsNIh3oEAG2GjbfTrvAMEI'
     availability:
       - BUILD
       - RUNTIME
   - variable: NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN
-    value: elite-chiller-455712-c4.firebaseapp.com
+    value: 'elite-chiller-455712-c4.firebaseapp.com'
     availability:
       - BUILD
       - RUNTIME
   - variable: NEXT_PUBLIC_FIREBASE_PROJECT_ID
-    value: elite-chiller-455712-c4
+    value: 'elite-chiller-455712-c4'
     availability:
       - BUILD
       - RUNTIME
   - variable: NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET
-    value: elite-chiller-455712-c4.firebasestorage.app
+    value: 'elite-chiller-455712-c4.firebasestorage.app'
     availability:
       - BUILD
       - RUNTIME
@@ -35,12 +35,17 @@ env:
       - BUILD
       - RUNTIME
   - variable: NEXT_PUBLIC_FIREBASE_APP_ID
-    value: 1:7807661688:web:ff2a2fcd4ff3d8451d1f8d
+    value: '1:7807661688:web:4bd4d17427e092281d1f8d'
     availability:
       - BUILD
       - RUNTIME
   - variable: NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID
-    value: G-CY8DV4DD7J
+    value: 'G-VFCBRLWEQF'
+    availability:
+      - BUILD
+      - RUNTIME
+  - variable: NEXT_PUBLIC_RECAPTCHA_SITE_KEY
+    value: '6LeBOusrAAAAAAveKbstwHfHbGKcY1wyvHA10c6s'
     availability:
       - BUILD
       - RUNTIME
