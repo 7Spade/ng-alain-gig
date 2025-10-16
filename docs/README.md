@@ -806,9 +806,26 @@ src/
 │   │   │
 │   │   └── index.ts
 │   │
-│   ├── shared/                                 # 共享模組 ✨
-│   │   ├── components/                          # 共享元件
-│   │   │   ├── ui/
+│   ├── shared/                                 # 共享模組 ✨ (漸進式重構)
+│   │   ├── legacy/                             # 現有模組 (保留相容性)
+│   │   │   ├── cell-widget/                     # 現有：單元格小工具
+│   │   │   │   └── index.ts
+│   │   │   ├── st-widget/                       # 現有：ST 表格小工具
+│   │   │   │   ├── index.ts
+│   │   │   │   └── README.md
+│   │   │   ├── json-schema/                     # 現有：JSON Schema 驗證
+│   │   │   │   ├── index.ts
+│   │   │   │   ├── README.md
+│   │   │   │   └── test/
+│   │   │   │       └── test.widget.ts
+│   │   │   ├── utils/                          # 現有：工具函數
+│   │   │   │   └── yuan.ts                      # 現有：元轉換工具
+│   │   │   ├── shared-delon.module.ts           # 現有：@delon 模組
+│   │   │   ├── shared-imports.ts                # 現有：共享匯入
+│   │   │   └── shared-zorro.module.ts           # 現有：ng-zorro 模組
+│   │   │
+│   │   ├── components/                          # 新架構：共享元件 (DDD)
+│   │   │   ├── ui/                              # UI 元件
 │   │   │   │   ├── loading/
 │   │   │   │   │   ├── loading-spinner.component.ts         # 載入動畫元件
 │   │   │   │   │   ├── loading-skeleton.component.ts        # 載入骨架元件
@@ -838,14 +855,14 @@ src/
 │   │   │   │       ├── alert.component.ts                  # 警告元件
 │   │   │   │       ├── empty-state.component.ts            # 空狀態元件
 │   │   │   │       └── error-boundary.component.ts         # 錯誤邊界元件
-│   │   │   └── business/
+│   │   │   └── business/                        # 業務元件
 │   │   │       ├── user-avatar.component.ts                # 用戶頭像元件
 │   │   │       ├── organization-logo.component.ts          # 組織標誌元件
 │   │   │       ├── project-status.component.ts             # 專案狀態元件
 │   │   │       ├── activity-timeline.component.ts          # 活動時間軸元件
 │   │   │       └── permission-guard.component.ts           # 權限守衛元件
 │   │   │
-│   │   ├── services/                            # 共享服務
+│   │   ├── services/                            # 新架構：共享服務 (DDD)
 │   │   │   ├── api/
 │   │   │   │   ├── base-api.service.ts                    # 基礎 API 服務
 │   │   │   │   ├── http-client.service.ts                 # HTTP 客戶端服務
@@ -869,7 +886,7 @@ src/
 │   │   │       ├── dark-mode.service.ts                   # 深色模式服務
 │   │   │       └── responsive.service.ts                  # 響應式服務
 │   │   │
-│   │   ├── models/                              # 共享模型
+│   │   ├── models/                              # 新架構：共享模型 (DDD)
 │   │   │   ├── interfaces/
 │   │   │   │   ├── base.interface.ts                      # 基礎介面
 │   │   │   │   ├── api-response.interface.ts              # API 回應介面
@@ -891,7 +908,7 @@ src/
 │   │   │       ├── pagination.dto.ts                      # 分頁 DTO
 │   │   │       └── filter.dto.ts                          # 篩選 DTO
 │   │   │
-│   │   ├── pipes/                               # 共享管道
+│   │   ├── pipes/                               # 新架構：共享管道 (DDD)
 │   │   │   ├── date-format.pipe.ts                    # 日期格式化管道
 │   │   │   ├── file-size.pipe.ts                      # 檔案大小管道
 │   │   │   ├── truncate.pipe.ts                       # 截斷文字管道
@@ -899,7 +916,7 @@ src/
 │   │   │   ├── currency-format.pipe.ts                # 貨幣格式化管道
 │   │   │   └── highlight.pipe.ts                      # 高亮文字管道
 │   │   │
-│   │   ├── directives/                          # 共享指令
+│   │   ├── directives/                          # 新架構：共享指令 (DDD)
 │   │   │   ├── auto-focus.directive.ts                 # 自動聚焦指令
 │   │   │   ├── click-outside.directive.ts               # 點擊外部指令
 │   │   │   ├── lazy-load.directive.ts                   # 延遲載入指令
@@ -907,7 +924,7 @@ src/
 │   │   │   ├── drag-drop.directive.ts                   # 拖拽指令
 │   │   │   └── infinite-scroll.directive.ts             # 無限滾動指令
 │   │   │
-│   │   ├── validators/                          # 共享驗證器
+│   │   ├── validators/                          # 新架構：共享驗證器 (DDD)
 │   │   │   ├── email.validator.ts                      # 郵箱驗證器
 │   │   │   ├── password.validator.ts                   # 密碼驗證器
 │   │   │   ├── phone.validator.ts                      # 電話驗證器
@@ -915,21 +932,21 @@ src/
 │   │   │   ├── file.validator.ts                       # 檔案驗證器
 │   │   │   └── business.validator.ts                   # 業務驗證器
 │   │   │
-│   │   ├── guards/                              # 共享守衛
+│   │   ├── guards/                              # 新架構：共享守衛 (DDD)
 │   │   │   ├── route-guard.ts                        # 路由守衛
 │   │   │   ├── permission-guard.ts                   # 權限守衛
 │   │   │   ├── role-guard.ts                         # 角色守衛
 │   │   │   ├── unsaved-changes-guard.ts              # 未儲存變更守衛
 │   │   │   └── organization-context-guard.ts         # 組織上下文守衛
 │   │   │
-│   │   ├── interceptors/                        # 共享攔截器
+│   │   ├── interceptors/                        # 新架構：共享攔截器 (DDD)
 │   │   │   ├── error-handler.interceptor.ts          # 錯誤處理攔截器
 │   │   │   ├── loading.interceptor.ts                # 載入攔截器
 │   │   │   ├── cache.interceptor.ts                  # 快取攔截器
 │   │   │   ├── retry.interceptor.ts                  # 重試攔截器
 │   │   │   └── request-id.interceptor.ts             # 請求 ID 攔截器
 │   │   │
-│   │   ├── utils/                               # 工具函數
+│   │   ├── utils/                               # 新架構：工具函數 (DDD)
 │   │   │   ├── array.utils.ts                       # 陣列工具函數
 │   │   │   ├── object.utils.ts                      # 物件工具函數
 │   │   │   ├── string.utils.ts                      # 字串工具函數
@@ -939,14 +956,14 @@ src/
 │   │   │   ├── crypto.utils.ts                      # 加密工具函數
 │   │   │   └── format.utils.ts                      # 格式化工具函數
 │   │   │
-│   │   ├── constants/                           # 常數定義
+│   │   ├── constants/                           # 新架構：常數定義 (DDD)
 │   │   │   ├── api.constants.ts                      # API 常數
 │   │   │   ├── app.constants.ts                      # 應用常數
 │   │   │   ├── storage.constants.ts                  # 儲存常數
 │   │   │   ├── validation.constants.ts               # 驗證常數
 │   │   │   └── business.constants.ts                 # 業務常數
 │   │   │
-│   │   └── index.ts
+│   │   └── index.ts                              # 統一匯出 (legacy + 新架構)
 │   │
 │   ├── layout/                                 # 版面配置 ✨
 │   │   ├── basic/                              # 基本版面 (現有)

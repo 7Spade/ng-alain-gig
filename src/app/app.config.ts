@@ -26,16 +26,7 @@ import { zh_CN as zorroLang } from 'ng-zorro-antd/i18n';
 import { ICONS } from '../style-icons';
 import { ICONS_AUTO } from '../style-icons-auto';
 import { routes } from './routes/routes';
-import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
-import { getAuth, provideAuth as provideAuth_alias } from '@angular/fire/auth';
-import { getAnalytics, provideAnalytics, ScreenTrackingService, UserTrackingService } from '@angular/fire/analytics';
-import { initializeAppCheck, ReCaptchaEnterpriseProvider, provideAppCheck } from '@angular/fire/app-check';
-import { getFirestore, provideFirestore } from '@angular/fire/firestore';
-import { getFunctions, provideFunctions } from '@angular/fire/functions';
-import { getMessaging, provideMessaging } from '@angular/fire/messaging';
-import { getPerformance, providePerformance } from '@angular/fire/performance';
-import { getStorage, provideStorage } from '@angular/fire/storage';
-import { getRemoteConfig, provideRemoteConfig } from '@angular/fire/remote-config';
+import { firebaseProviders } from './core/infrastructure/firebase/firebase-providers';
 
 const defaultLang: AlainProvideLang = {
   abbr: 'zh-CN',
@@ -84,35 +75,11 @@ if (environment.api?.refreshTokenEnabled && environment.api.refreshTokenType ===
 }
 
 export const appConfig: ApplicationConfig = {
-  providers: providers,
   providers: [
-    provideFirebaseApp(() =>
-      initializeApp({
-        projectId: 'elite-chiller-455712-c4',
-        appId: '1:7807661688:web:4bd4d17427e092281d1f8d',
-        storageBucket: 'elite-chiller-455712-c4.firebasestorage.app',
-        apiKey: 'AIzaSyCJ-eayGjJwBKsNIh3oEAG2GjbfTrvAMEI',
-        authDomain: 'elite-chiller-455712-c4.firebaseapp.com',
-        messagingSenderId: '7807661688',
-        measurementId: 'G-VFCBRLWEQF',
-        projectNumber: '7807661688',
-        version: '2'
-      })
-    ),
-    provideAuth_alias(() => getAuth()),
-    provideAnalytics(() => getAnalytics()),
-    ScreenTrackingService,
-    UserTrackingService,
-    provideAppCheck(() => {
-      // TODO get a reCAPTCHA Enterprise here https://console.cloud.google.com/security/recaptcha?project=_
-      const provider = new ReCaptchaEnterpriseProvider(/* reCAPTCHA Enterprise site key */);
-      return initializeAppCheck(undefined, { provider, isTokenAutoRefreshEnabled: true });
-    }),
-    provideFirestore(() => getFirestore()),
-    provideFunctions(() => getFunctions()),
-    provideMessaging(() => getMessaging()),
-    providePerformance(() => getPerformance()),
-    provideStorage(() => getStorage()),
-    provideRemoteConfig(() => getRemoteConfig())
+    // ng-alain 核心配置
+    ...providers,
+
+    // Firebase 配置
+    ...firebaseProviders
   ]
 };
