@@ -1,4 +1,3 @@
-<<<<<<< Current (Your changes)
 # Account Module - 模組概覽
 
 ## 模組定義
@@ -29,29 +28,6 @@
 
 ```
 account-module/
-=======
-# User Module - 模組概覽
-
-## 模組定義
-**對應領域**: User Domain (個人用戶管理)  
-**模組職責**: 個人用戶身份管理、個人資料管理、個人成就追蹤
-
-## 領域模型
-
-### User 領域 (個人用戶)
-- **目標用戶**: 工程師、監工、承包商
-- **核心實體**:
-  - `UserProfile`: 個人資料 + 專業證照
-  - `UserPreferences`: 個人偏好設定
-  - `UserAuthentication`: 身份認證資訊
-  - `UserAchievements`: 個人成就徽章
-  - `UserSkills`: 專業技能和證照
-
-## 模組結構
-
-```
-user-module/
->>>>>>> Incoming (Background Agent changes)
 ├── user/                    # 個人用戶功能
 │   ├── profile/            # 個人資料管理
 │   ├── preferences/        # 偏好設定

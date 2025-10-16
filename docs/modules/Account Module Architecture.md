@@ -12,12 +12,13 @@
 - **擁有者模型**: 支援作為專案擁有者的統一介面
 
 ### 2. 模組職責
+Account Module 專注於基本的帳戶管理功能：
 - Account 註冊與身份驗證
 - Account 檔案管理
-- 社交功能（追蹤、星標）
-- 成就系統
-- 通知管理
-- 團隊參與
+- 基本安全設定
+- 帳戶狀態管理
+
+**注意**: 社交功能（追蹤、星標）、成就系統、通知管理、團隊參與等功能屬於其他專門模組，不在 Account Module 範圍內。
 
 ## 架構圖
 
@@ -29,28 +30,23 @@ graph TB
             U[User Entity<br/>用戶實體]
             O[Organization Entity<br/>組織實體]
             P[Profile Value Object<br/>檔案值物件]
-            AC[Achievement Entity<br/>成就實體]
-            F[Following Entity<br/>追蹤實體]
-            S[Starred Project Entity<br/>星標專案實體]
-            T[Team Membership<br/>團隊成員資格]
+            S[Security Settings<br/>安全設定]
         end
         
         subgraph "Application Services"
             AS[Account Service<br/>帳戶服務]
             US[User Service<br/>用戶服務]
             PS[Profile Service<br/>檔案服務]
-            SS[Social Service<br/>社交服務]
-            ACS[Achievement Service<br/>成就服務]
-            NS[Notification Service<br/>通知服務]
+            SS[Security Service<br/>安全服務]
         end
         
         subgraph "Domain Events"
             E1[UserRegistered<br/>用戶註冊]
             E2[ProfileUpdated<br/>檔案更新]
-            E3[UserFollowed<br/>用戶追蹤]
-            E4[ProjectStarred<br/>專案星標]
-            E5[AchievementUnlocked<br/>成就解鎖]
-            E6[TeamJoined<br/>加入團隊]
+            E3[AccountActivated<br/>帳戶啟用]
+            E4[AccountDeactivated<br/>帳戶停用]
+            E5[PasswordChanged<br/>密碼變更]
+            E6[SecuritySettingsUpdated<br/>安全設定更新]
         end
         
         subgraph "Infrastructure"
@@ -65,23 +61,18 @@ graph TB
     A --> U
     A --> O
     U --> P
-    U --> AC
-    U --> F
     U --> S
-    U --> T
     
     AS --> A
     US --> U
     PS --> P
-    SS --> F
     SS --> S
-    ACS --> AC
     
     US --> E1
     PS --> E2
     SS --> E3
     SS --> E4
-    ACS --> E5
+    SS --> E5
     US --> E6
     
     AS --> DB
@@ -223,6 +214,7 @@ interface OrganizationMembership {
 - Firebase 身份驗證整合
 - @delon/auth 令牌管理
 - @delon/acl 權限控制
+- 帳戶啟用/停用
 
 ### 2. Account 檔案
 - 基本資料編輯
@@ -230,29 +222,13 @@ interface OrganizationMembership {
 - 專業資訊管理
 - 證照管理
 
-### 3. 社交功能
-- 追蹤其他 Account
-- 管理追蹤者
-- 星標專案
-- 活動動態
+### 3. 安全設定
+- 密碼管理
+- 雙因子認證設定
+- 登入記錄查看
+- 安全偏好設定
 
-### 4. 成就系統
-- 成就追蹤
-- 進度計算
-- 徽章獎勵
-- 排行榜
-
-### 5. 通知管理
-- 通知偏好設定
-- 多通道通知（應用內、郵件、推播）
-- 通知歷史
-- 批次通知管理
-
-### 6. 團隊協作
-- 查看所屬團隊
-- 團隊角色管理
-- 團隊切換
-- 權限同步
+**注意**: 社交功能、成就系統、通知管理、團隊協作等功能屬於其他專門模組，不在 Account Module 範圍內。
 
 ## Firebase 整合
 
