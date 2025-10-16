@@ -4,7 +4,15 @@
  */
 
 import { Injectable, inject } from '@angular/core';
-import { Auth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, onIdTokenChanged, User } from '@angular/fire/auth';
+import {
+  Auth,
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+  sendEmailVerification,
+  signOut,
+  onIdTokenChanged,
+  User
+} from '@angular/fire/auth';
 import { DA_SERVICE_TOKEN } from '@delon/auth';
 import { ACLService } from '@delon/acl';
 import { Observable, from, BehaviorSubject } from 'rxjs';
@@ -66,6 +74,10 @@ export class FirebaseAuthService {
   async register(email: string, password: string): Promise<void> {
     try {
       const userCredential = await createUserWithEmailAndPassword(this.auth, email, password);
+      // 寄送驗證信（非必要可移除）
+      try {
+        await sendEmailVerification(userCredential.user);
+      } catch {}
       await this.syncWithDelonAuth(userCredential.user);
     } catch (error) {
       console.error('Firebase register error:', error);

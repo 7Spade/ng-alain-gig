@@ -1,9 +1,8 @@
-import { HttpContext } from '@angular/common/http';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, inject } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
-import { ALLOW_ANONYMOUS } from '@delon/auth';
-import { I18nPipe, _HttpClient } from '@delon/theme';
+import { I18nPipe } from '@delon/theme';
+import { Auth } from '@angular/fire/auth';
 import { MatchControl } from '@delon/util/form';
 import { NzAlertModule } from 'ng-zorro-antd/alert';
 import { NzButtonModule } from 'ng-zorro-antd/button';
@@ -37,8 +36,13 @@ import { finalize } from 'rxjs';
 })
 export class UserRegisterComponent implements OnDestroy {
   private readonly router = inject(Router);
-  private readonly http = inject(_HttpClient);
   private readonly cdr = inject(ChangeDetectorRef);
+  private readonly auth = inject(Auth);
+
+  // 使用服務統一入口
+  private readonly firebaseAuth = inject(
+    import('../../../core/auth/services/firebase-auth.service').then(m => m.FirebaseAuthService) as unknown as any
+  );
 
   // #region fields
 
@@ -114,7 +118,7 @@ export class UserRegisterComponent implements OnDestroy {
 
   // #endregion
 
-  submit(): void {
+  async submit(): Promise<void> {
     this.error = '';
     Object.keys(this.form.controls).forEach(key => {
       const control = (this.form.controls as NzSafeAny)[key] as AbstractControl;
@@ -124,23 +128,19 @@ export class UserRegisterComponent implements OnDestroy {
     if (this.form.invalid) {
       return;
     }
-
     const data = this.form.value;
     this.loading = true;
     this.cdr.detectChanges();
-    this.http
-      .post('/register', data, null, {
-        context: new HttpContext().set(ALLOW_ANONYMOUS, true)
-      })
-      .pipe(
-        finalize(() => {
-          this.loading = false;
-          this.cdr.detectChanges();
-        })
-      )
-      .subscribe(() => {
-        this.router.navigate(['passport', 'register-result'], { queryParams: { email: data.mail } });
-      });
+    try {
+      await this.firebaseAuth.register(data.mail!, data.password!);
+      this.router.navigate(['passport', 'register-result'], { queryParams: { email: data.mail } });
+    } catch (e: any) {
+      this.error = e?.message || 'Register failed';
+      this.cdr.detectChanges();
+    } finally {
+      this.loading = false;
+      this.cdr.detectChanges();
+    }
   }
 
   ngOnDestroy(): void {
