@@ -1,0 +1,70 @@
+# Settings to manage and configure a Firebase App Hosting backend.
+# https://firebase.google.com/docs/app-hosting/configure
+
+# These environment variables are for future reference and are not directly used by the client-side application.
+# The client-side Firebase configuration is managed via .env.local.
+env:
+  - variable: GEMINI_API_KEY
+    value: AIzaSyDhemxrqE_QjqM_a51nSRz3vqxXywJKh-U
+    availability:
+      - BUILD
+      - RUNTIME
+  - variable: NEXT_PUBLIC_FIREBASE_API_KEY
+    value: AIzaSyCJ-eayGjJwBKsNIh3oEAG2GjbfTrvAMEI
+    availability:
+      - BUILD
+      - RUNTIME
+  - variable: NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN
+    value: elite-chiller-455712-c4.firebaseapp.com
+    availability:
+      - BUILD
+      - RUNTIME
+  - variable: NEXT_PUBLIC_FIREBASE_PROJECT_ID
+    value: elite-chiller-455712-c4
+    availability:
+      - BUILD
+      - RUNTIME
+  - variable: NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET
+    value: elite-chiller-455712-c4.firebasestorage.app
+    availability:
+      - BUILD
+      - RUNTIME
+  - variable: NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID
+    value: '7807661688'
+    availability:
+      - BUILD
+      - RUNTIME
+  - variable: NEXT_PUBLIC_FIREBASE_APP_ID
+    value: 1:7807661688:web:ff2a2fcd4ff3d8451d1f8d
+    availability:
+      - BUILD
+      - RUNTIME
+  - variable: NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID
+    value: G-CY8DV4DD7J
+    availability:
+      - BUILD
+      - RUNTIME
+
+  - variable: NEXT_PUBLIC_SUPABASE_URL
+    value: https://lfslbigukzjmkskxzkrw.supabase.co
+    availability:
+      - BUILD
+      - RUNTIME
+
+  - variable: NEXT_PUBLIC_SUPABASE_ANON_KEY
+    value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imxmc2xiaWd1a3pqbWtza3h6a3J3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTg5NjQwNTEsImV4cCI6MjA3NDU0MDA1MX0.JFWGVQGiuW0HpFXWDMaReTBgMzUbBFHE_KjP_RCSONM
+    availability:
+      - BUILD
+      - RUNTIME
+
+  - variable: REDIS_URL
+    value: redis://default:dd5vGsCR8xmarfTpcLJF0undQqIr0lM5@redis-11024.c299.asia-northeast1-1.gce.redns.redis-cloud.com:11024
+    availability:
+      - BUILD
+      - RUNTIME
+
+runConfig:
+  # Increase this value if you'd like to automatically spin up
+  # more instances in response to increased traffic.
+  minInstances: 0
+  maxInstances: 1

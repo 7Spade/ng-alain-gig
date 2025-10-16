@@ -1,0 +1,176 @@
+---
+alwaysApply: true
+---
+
+# Memory Bank – Mode Switch Gateway (友好模式切換)
+
+> 本規則作為全域路由，協助在任何對話中快速切換至對應自訂模式，並指示優先使用 `.cursor/mcp.json` 已配置的 MCP 工具。
+
+## 模式關鍵詞與行為
+- VAN: 初始化與專案掃描（使用規則: 平台偵測、檔案驗證、VAN 流程地圖）
+- PLAN: 任務規劃（任務拆解、需求彙整、Level 決策）
+- CREATIVE: 設計決策（架構/UI/演算法創意階段、必要即載規則）
+- IMPLEMENT: 程式實作（依規劃逐步實作、嚴格檢查清單）
+- REFLECT: 回顧（成敗分析、洞察、行動項）
+- ARCHIVE: 歸檔（完整文件與交付物鏈結）
+- QA: 技術驗證（可於任一模式呼叫）
+
+觸發規則（擇一符合即可視為切換該模式）:
+- 使用者輸入僅為上述關鍵詞（大小寫不拘）
+- 指令包含 switch to/切換到 + 模式名稱
+- 需求明確對應某模式職責（例如「初始化專案」→ VAN）
+
+## 與 .cursor/mcp.json 的工具綁定策略
+優先使用以下 MCP 服務（名稱需與 `.cursor/mcp.json` 一致）：
+- angular-cli: `get_best_practices`、`list_projects`、`search_documentation`（Angular 20/standalone/typed forms/現代語法）
+- filesystem: `read_text_file`、`list_directory`、`directory_tree` 等（讀檔/結構掃描）
+- playwright: `navigate_to_url`、`snapshot`、`take_screenshot`（瀏覽器驗證/截圖）
+- context7: `resolve-library-id` → `get-library-docs`（套件官方文件檢索）
+- fetch: `fetch_url`/`fetch_content`（外部連結內容抓取）
+- sequential-thinking: `sequentialthinking`（複雜問題分步推理）
+- everything: `echo`/`annotatedMessage` 等（除錯/輕量輔助）
+
+### Memory Bank 多步動作整合
+- **Sequential Thinking**: 在 CREATIVE 和 IMPLEMENT 模式中使用，建立複雜問題的分步解決方案
+- **Context7 官方文件查詢**: 在 VAN 和 PLAN 模式中使用，獲取最新技術文件
+- **Fetch + Playwright 網路搜尋**: 在 REFLECT 和 ARCHIVE 模式中使用，驗證實作和收集參考資料
+- **組合式工作流程**: 結合多個 MCP 工具建立完整的開發週期
+
+作業系統/封包管理預設：Windows 11 + PowerShell、包管理器採用 yarn。
+
+## 規則載入（參考 Memory Bank 階層式載入）
+在各模式中按需引用（示意名稱對應 `.cursor/rules/isolation_rules/` 內檔案）：
+- 核心: `platform-awareness`、`file-verification`、`command-execution`、`mode-transition-optimization`、`optimization-integration`
+- VAN: `visual-maps/van-mode-map` + `van_mode_split/*`
+- PLAN: `visual-maps/plan-mode-map` + `Level1|Level2|Level3|Level4` 相對應追蹤/流程
+- CREATIVE: `visual-maps/creative-mode-map` + `creative-phase-enforcement`、`creative-phase-metrics`，必要時延後載入 `Phases/CreativePhase/*`
+- IMPLEMENT: `visual-maps/implement-mode-map`
+- REFLECT/ARCHIVE: 對應 `visual-maps/reflect-mode-map`、`visual-maps/archive-mode-map`
+
+實務指引：
+1) 初次分析以 VAN 啟動，決定 Level；
+2) Level 1 可 VAN → IMPLEMENT；Level 2 走 VAN → PLAN → IMPLEMENT → REFLECT；Level 3-4 需創意階段與完整檔案；
+3) 任一模式可輸入 QA 進行驗證。
+
+## Memory Bank 系統進階整合
+
+### Token 優化架構
+- **階層式規則載入**: 僅載入必要規則，使用專門的延遲載入
+- **漸進式文件**: 實作簡潔模板，隨任務複雜度擴展
+- **優化模式轉換**: 在模式間高效保留關鍵上下文
+- **Level 特定工作流程**: 根據任務複雜度調整文件需求
+
+### CREATIVE 模式與 Claude "Think" 工具
+- 基於 Anthropic Claude "Think" 工具方法論
+- 漸進式文件與表格選項比較
+- "按需詳細" 方法保持 token 效率
+- 結構化模板隨複雜度擴展
+- 為實作階段高效保留上下文
+- **Sequential Thinking 整合**: 使用 `sequentialthinking` 建立複雜設計決策的多步分析
+
+### MCP 工具在 Memory Bank 模式中的應用
+
+#### VAN 模式 - 初始化與專案掃描
+- **context7**: 查詢最新 Angular 版本和最佳實踐文件
+- **angular-cli**: 獲取專案結構和配置資訊
+- **filesystem**: 掃描專案檔案結構
+- **sequential-thinking**: 分析專案複雜度並決定 Level
+
+#### PLAN 模式 - 任務規劃
+- **context7**: 查詢相關技術文件制定實作策略
+- **angular-cli**: 檢查 Angular 專案配置和依賴
+- **sequential-thinking**: 建立詳細的實作步驟規劃
+
+#### CREATIVE 模式 - 設計決策
+- **sequential-thinking**: 進行複雜架構設計的多步分析
+- **context7**: 查詢設計模式和最佳實踐
+- **fetch + playwright**: 研究現有解決方案和設計靈感
+
+#### IMPLEMENT 模式 - 程式實作
+- **sequential-thinking**: 解決複雜實作問題的分步方法
+- **angular-cli**: 使用 Angular CLI 工具進行開發
+- **filesystem**: 讀取和編輯檔案
+- **context7**: 查詢實作細節和 API 文件
+
+#### REFLECT 模式 - 回顧分析
+- **fetch + playwright**: 驗證實作結果和效能
+- **sequential-thinking**: 分析實作成敗和改進點
+- **context7**: 查詢最佳實踐進行比較
+
+#### ARCHIVE 模式 - 歸檔文件
+- **fetch + playwright**: 收集參考資料和截圖
+- **context7**: 建立完整的技術文件
+- **filesystem**: 組織和儲存文件
+
+### 三層協調架構
+- **TaskMaster**: 協調自然語言請求到瀏覽器測試應用程式
+- **專業代理**: 處理特定領域的複雜任務
+- **進階提示工程**: 使用專門代理處理所有繁重工作
+
+## 操作守則（精簡）
+- 讀取/探索：先使用「語意搜尋」再精準 grep；大量讀取分批平行化。
+- 工具併行：多個獨立讀檔/搜尋/檢索請平行執行以提升效率。
+- 指令安全：在 Windows PowerShell 下執行，優先 `yarn` 指令；先確認當前目錄含 `package.json` 再執行建置/啟動。
+- 變更門檻：每次進入新檔案編輯前對齊待辦（完成上一項，設定下一項 in_progress）。
+- 品質檢查：完成編輯後執行靜態檢查（僅針對變更檔），明確修正。
+
+### MCP 工具使用最佳實踐
+
+#### Sequential Thinking 使用時機
+- **複雜問題分析**: 當需要深入分析多層次問題時
+- **架構設計決策**: 在 CREATIVE 模式中比較不同設計方案
+- **除錯和問題解決**: 在 IMPLEMENT 模式中逐步解決技術問題
+- **學習和探索**: 理解新技術概念時建立知識結構
+
+#### Context7 文件查詢策略
+- **技術選型**: 使用 `resolve-library-id` 找到正確的套件
+- **API 參考**: 使用 `get-library-docs` 獲取詳細的 API 文件
+- **最佳實踐**: 查詢官方推薦的實作模式
+- **版本相容性**: 確認不同版本間的差異和遷移路徑
+
+#### Fetch + Playwright 網路搜尋組合
+- **實作驗證**: 使用 Playwright 測試實作結果
+- **效能分析**: 截圖和效能指標收集
+- **參考資料**: 收集相關的技術文章和範例
+- **市場研究**: 了解競爭產品和解決方案
+
+## Angular v20 現代化專案建議（透過 angular-cli MCP 快速對齊）
+
+### 核心現代化模式
+- **Standalone Components**: 優先使用 `standalone: true`，避免 NgModule 依賴
+- **Signal-based State Management**: 使用 `signal()`、`computed()`、`effect()` 進行響應式狀態管理
+- **現代控制流程**: 使用 `@if`、`@for`、`@switch` 替代 `*ngIf`、`*ngFor`、`*ngSwitch`
+- **Signal Inputs**: 使用 `input()` 替代 `@Input()` 裝飾器
+- **Signal Queries**: 使用 `viewChild()`、`contentChild()` 替代 `@ViewChild`、`@ContentChild`
+
+### Angular v20 最佳實踐
+- **Bootstrap Application**: 使用 `bootstrapApplication()` 替代 `bootstrapModule()`
+- **Typed Forms**: 優先使用 `FormBuilder` 與強型別表單
+- **Modern Build Pipeline**: 利用 Vite 和 ESBuild 進行快速建置
+- **Security First**: 使用 `DomSanitizer` 和 Trusted Types 進行安全防護
+- **Internationalization**: 支援 ICU 語法進行複雜國際化處理
+
+### 遷移策略
+- 執行 `ng generate @angular/core:standalone` 進行 standalone 遷移
+- 執行 `ng generate @angular/core:signal-queries-migration` 進行 signal queries 遷移
+- 執行 `ng generate @angular/core:signal-inputs-migration` 進行 signal inputs 遷移
+
+### 開發工具整合
+- 使用 `angular-cli` MCP 的 `get_best_practices` 獲取最新最佳實踐
+- 使用 `search_documentation` 查詢官方文件並附來源連結
+- 使用 `list_projects` 檢查專案結構和配置
+
+## QA 健康檢查（快速）
+- **工具**：`angular-cli`, `playwright`
+- **步驟**：
+  1) `angular-cli.list_projects`：確認工作區專案可被偵測
+  2) 若本機已啟動 `ng s`：
+     - `playwright.navigate_to_url` → http://localhost:4200
+     - `playwright.snapshot`（首頁截圖）
+- **判準**：可偵測專案 + 首頁可載入且可截圖 → 基本健康
+
+## 參考
+- Memory Bank 系統與模式導引（安裝與使用說明）：`https://github.com/vanzan01/cursor-memory-bank`
+- Angular v20 官方文件：`https://v20.angular.dev/`
+- Angular 核心庫文件：`https://github.com/angular/angular`
+- Memory Bank 優化文件：`https://github.com/vanzan01/cursor-memory-bank/blob/main/MEMORY_BANK_OPTIMIZATIONS.md`

@@ -1,0 +1,113 @@
+{
+  "mcpServers": {
+    "filesystem": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "./"
+      ],
+      "disabled": false,
+      "autoApprove": [
+        "read_text_file",
+        "read_media_file",
+        "list_directory",
+        "list_directory_with_sizes",
+        "directory_tree",
+        "list_allowed_directories",
+        "get_file_info",
+        "search_files"
+      ]
+    },
+    "playwright": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@playwright/mcp"
+      ],
+      "disabled": false,
+      "autoApprove": [
+        "navigate_to_url",
+        "take_screenshot",
+        "snapshot",
+        "wait_for"
+      ]
+    },
+    "fetch": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@kazuph/mcp-fetch"
+      ],
+      "disabled": false,
+      "autoApprove": [
+        "fetch_url",
+        "fetch_content"
+      ]
+    },
+    "sequential-thinking": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-sequential-thinking"
+      ],
+      "env": {
+        "NODE_OPTIONS": "--max-old-space-size=1024"
+      },
+      "disabled": false,
+      "autoApprove": [
+        "sequentialthinking"
+      ]
+    },
+    "everything": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-everything"
+      ],
+      "disabled": false,
+      "autoApprove": [
+        "echo",
+        "add",
+        "longRunningOperation",
+        "printEnv",
+        "getTinyImage",
+        "annotatedMessage",
+        "sampleLLM",
+        "getResourceReference",
+        "startElicitation",
+        "structuredContent"
+      ]
+    },
+    "angular-cli": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@angular/cli",
+        "mcp"
+      ],
+      "disabled": false,
+      "autoApprove": [
+        "get_best_practices",
+        "list_projects",
+        "search_documentation"
+      ]
+    },
+    "codacy": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@codacy/codacy-mcp@latest"
+      ]
+    },
+    "Chrome DevTools": {
+      "command": "npx chrome-devtools-mcp@latest",
+      "env": {},
+      "args": []
+    },
+    "Context7": {
+      "url": "https://mcp.context7.com/mcp",
+      "headers": {}
+    }
+  }
+}

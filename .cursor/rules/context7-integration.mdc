@@ -1,0 +1,140 @@
+---
+alwaysApply: true
+---
+
+# CONTEXT7 – 官方文件檢索整合規則
+
+> 目的：標準化使用 `.cursor/mcp.json` 已配置之 `Context7` MCP 服務來檢索第三方／官方文件，讓回答更準確、可追溯、並保持最新。
+
+## 工具對應（必讀）
+- 解析 Library：`resolve-library-id`
+  - 目的：將使用者提供的套件／專案名稱解析為 Context7 相容的 Library ID（例如：`/vercel/next.js`、`/mongodb/docs`）。
+  - 規則：除非使用者已直接提供 Context7 相容 ID（`/org/project` 或 `/org/project/version`），否則必須先呼叫此工具。
+- 取得文件：`get-library-docs`
+  - 目的：根據解析後的 Library ID 擷取指定主題（`topic`）的最新文件內容。
+  - 參數：`topic`（可選）、`tokens`（可控），預設 5000，建議依需求下修以提升效率。
+
+## 何時使用 Context7
+- 當問題與「第三方套件／平台」的 API、安裝、設定、最佳實踐、版本差異有關。
+- 當需要引用可追溯來源連結（提供 URL 或明確來源名）。
+- 非第三方場景：
+  - Angular 官方內容優先使用 `angular-cli.search_documentation`；
+  - Angular 以外生態（例如 RxJS、NestJS、Next.js、Prisma 等）優先走 Context7。
+
+## 操作流程（標準）
+1) 明確化查詢：萃取關鍵名詞（套件名、功能、API 名稱、版本）。
+2) Library 解析：呼叫 `resolve-library-id`，取得最相關的 Library ID。
+3) 文件擷取：呼叫 `get-library-docs`（必要時加上 `topic`），合理設定 `tokens`（1500–3000 通常足夠）。
+4) 摘要與引用：
+   - 提供「精簡重點」＋「原文出處連結」。
+   - 若存在多個可行來源，說明已選其一並簡述原因。
+5) 回應格式：
+   - 先給出直接答案；
+   - 接著列 1–3 點關鍵依據；
+   - 最後附上來源連結（使用描述性錨點）。
+
+## 選擇規則（歧義處理）
+- 多個候選套件同名時：
+  - 優先官方／可信度高（Trust score 7–10）、文件覆蓋率高的專案；
+  - 次優先：與查詢語意最接近者；
+  - 若仍歧義：先回覆最合理者並註明其他可能選項，必要時請使用者釐清。
+- 找不到合適專案：
+  - 回覆「無良好匹配」，並提出查詢改善建議（加入關鍵詞、版本、作者、框架名）。
+
+## 參數建議
+- `topic`：
+  - 依使用場景指定，如：`hooks`、`routing`、`auth`、`cli`、`configuration`、`migration`。
+- `tokens`：
+  - 預設 5000；一般建議 1500–3000，避免冗長內容影響效率。
+
+## 錯誤與回退策略
+- 解析失敗／無結果：
+  - 回覆使用者請求更明確套件資訊（名稱、版本、作者或 GitHub 連結）。
+- 檔量過大或逾時：
+  - 下修 `tokens` 或聚焦更明確 `topic`。
+- 版本相依性衝突：
+  - 在回應中明確標示版本差異並提供相容性建議或遷移提示。
+
+## 與其他工具的協作
+- Angular：先用 `angular-cli.search_documentation`；若為第三方 Angular 生態（如 NGXS、RxJS 外掛），再用 Context7。
+- 瀏覽器驗證（Playwright）與擷取（Fetch）：必要時輔助查核文件外部實例或變更日誌。
+- 階段性思考（Sequential Thinking）：在方案選型或多來源對照時，分步比較並收斂解法。
+
+## 輸出規範（對話層）
+- 回答結構：
+  - 直接答案（最短可行）；
+  - 關鍵依據（1–3 點）；
+  - 來源（使用描述性錨點連結）。
+- 風格：
+  - 精簡、可掃描；
+  - 僅在需要時展開細節；
+  - 清楚標示版本／限制／相容性。
+
+## 範例工作流
+- 查詢：如何在 Next.js 使用 App Router 動態路由？
+  1) 解析 Library：`resolve-library-id` with `next.js`
+  2) 取得文件：`get-library-docs` with `context7CompatibleLibraryID: "/vercel/next.js"`, `topic: "routing"`, `tokens: 2000`
+  3) 回答：給出最小可行用法與來源連結（官方 Routing 章節）。
+
+## 最佳實踐
+- 優先官方文件；
+- 引用處提供可點擊來源；
+- 在「多選其一」時，說明選擇理由；
+- 以最小可行答案回覆，再附延伸閱讀連結。
+
+---
+
+## 交叉連結
+- 參考：`sequential-thinking-integration.mdc`（模式 Hooks 與 Transition 欄位）
+- 參考：`isolation_rules/Core/mode-transition-optimization.mdc`（`DocSources` 規格）
+
+## 最短樣例（工具呼叫）
+```json
+{
+  "libraryName": "next.js"
+}
+```
+```json
+{
+  "context7CompatibleLibraryID": "/vercel/next.js",
+  "topic": "routing",
+  "tokens": 2000
+}
+```
+
+---
+
+## 與其他工具的協作（可執行流程）
+
+### Auto-export（可選，省 token）
+- 在完成檢索與摘要後，將關鍵內容附加至：
+  - `memory-bank/transition.md`（如屬 Transition 場景）：填入 `DocSources` 與 `decisionTraceId`
+  - `memory-bank/creative-phase/decision-log.md`（如屬 CREATIVE 決策）：填入 Options/Decision/docSources
+- 建議只寫「必要欄位」與「短摘要」，避免冗長內容佔用 token。
+
+- Angular（官方內容）
+  1. `angular-cli.search_documentation` → 直接回覆（必要時附來源）
+  2. 若缺少上下文或跨版本差異 → 切換 Context7：`resolve-library-id` → `get-library-docs`
+  3. 由 `sequential-thinking` 驗證關鍵依據與下一步
+
+- 非 Angular/第三方生態
+  1. `resolve-library-id`（必要時請使用者補充關鍵詞/版本）
+  2. `get-library-docs`（指定 `topic`，tokens 建議 1500–3000）
+  3. 摘要＋來源連結 → `sequential-thinking` 收斂決策
+
+- 於 VAN/PLAN/CREATIVE/QA 的觸發點（由 `sequential-thinking` 控制）
+  - VAN：判定是否需檢索（Y/N）
+  - PLAN：需求分解後為每個技術點啟動一次檢索
+  - CREATIVE：每個候選方案至少一輪檢索，用於佐證決策
+  - QA：遇到不確定/變更日誌需要時再檢索
+
+## 錯誤回退矩陣（摘要）
+
+```
+| 狀況 | 動作 |
+|---|---|
+| 無 Library 匹配 | 要求更精確名稱/版本/作者/Repo 連結，再試一次 |
+| 多個候選衝突 | 選擇官方/高信任度並註明其他選項；必要時請用者釐清 |
+| 逾時/內容過大 | 下修 tokens 或縮小 topic；分批檢索 |
+| 版本相依衝突 | 附版本差異與相容策略，提供遷移提示 |
+```

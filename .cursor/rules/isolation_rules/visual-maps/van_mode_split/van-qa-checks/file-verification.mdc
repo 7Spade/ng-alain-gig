@@ -1,0 +1,29 @@
+---
+description: VAN QA - File verification checklist for Angular workspace
+globs: "**/*"
+alwaysApply: false
+---
+
+# VAN QA — File Verification (Angular)
+
+## Required Files
+- package.json
+- angular.json
+- tsconfig.json
+- tsconfig.app.json
+- src/main.ts
+- src/app/app.config.ts
+- .cursorrules
+- .cursor/mcp.json
+
+## Quick Checks
+- [ ] package.json 存在且含 @angular/* v20 相容套件
+- [ ] angular.json 存在且專案可被 `angular-cli.list_projects` 正確偵測
+- [ ] tsconfig* 存在且 `compilerOptions.target` 與 Angular 版本相容
+- [ ] `src/main.ts` 使用 `bootstrapApplication()`（非 NgModule）
+- [ ] `.cursorrules` 已啟用模式與工具綁定
+- [ ] `.cursor/mcp.json` MCP 服務可啟動（filesystem / angular-cli / playwright / context7 / fetch）
+
+## Outcome
+- 所有勾選均通過 → 可進入 PLAN/IMPLEMENT 或 QA 驗證
+- 有缺失 → 回 VAN 流程補齊檔案或設定

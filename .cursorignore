@@ -1,0 +1,89 @@
+# Dependencies and build artifacts
+node_modules
+.node_modules
+_cli-tpl
+.angular
+.yarn
+dist
+tmp
+out-tsc
+bazel-out
+delon-builds
+
+# IDE and editor files
+.vscode
+.idea
+.project
+.classpath
+.c9
+*.launch
+.settings
+*.sublime-workspace
+.history
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Logs and cache
+npm-debug.log
+yarn-error.log
+.eslintcache
+*.log
+.sass-cache
+connect.lock
+coverage
+libpeerconnection.log
+testem.log
+typings
+
+# Firebase
+.firebase
+.runtimeconfig.json
+
+# Lock files
+pnpm-lock.yaml
+.pnp.*
+
+# Documentation and reference files (not needed for development)
+custom_modes
+
+# Memory Bank references (exclude from Cursor indexing)
+memory-bank/references/angular-accessibility
+memory-bank/references/angular-advanced
+memory-bank/references/angular-ai-integration
+memory-bank/references/angular-build-optimization
+memory-bank/references/angular-ci-cd
+memory-bank/references/angular-code-quality
+memory-bank/references/angular-control-flow
+memory-bank/references/angular-ddd
+memory-bank/references/angular-debugging
+memory-bank/references/angular-delon
+memory-bank/references/angular-deployment
+memory-bank/references/angular-devtools-integration
+memory-bank/references/angular-e2e-testing
+memory-bank/references/angular-fire
+memory-bank/references/angular-forms
+memory-bank/references/angular-foundation
+memory-bank/references/angular-i18n
+memory-bank/references/angular-incremental-hydration
+memory-bank/references/angular-material-design
+memory-bank/references/angular-micro-frontends
+memory-bank/references/angular-monitoring
+memory-bank/references/angular-ng-zorro-antd
+memory-bank/references/angular-performance
+memory-bank/references/angular-pwa
+memory-bank/references/angular-routing
+memory-bank/references/angular-security
+memory-bank/references/angular-signals
+memory-bank/references/angular-state-management
+memory-bank/references/angular-testing
+memory-bank/references/angular-testing-quality
+memory-bank/references/angular-theming
+memory-bank/references/angular-typed-forms
+memory-bank/references/angular-unit-testing
+memory-bank/references/angular-widgets
+memory-bank/references/angular-zoneless
+
+
+

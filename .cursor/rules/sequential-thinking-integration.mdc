@@ -1,0 +1,135 @@
+---
+description: Sequential Thinking integration for isolation rules (階段性思考整合)
+globs: "**/isolation_rules/**"
+alwaysApply: true
+---
+
+# SEQUENTIAL THINKING – 階段性思考整合規則
+
+> 目的：為 `.cursor/rules/isolation_rules/**` 全域規則集（含 Core/Level1-4/Phases/visual-maps）提供統一的「階段性思考」能力，使用 `.cursor/mcp.json` 已配置之 `sequential-thinking` MCP 工具，以提升多步驟推理、設計與實作的可控性與一致性。
+
+## 適用範圍
+- Core：command-execution、complexity-decision-tree、creative-phase-enforcement、creative-phase-metrics、file-verification、hierarchical-rule-loading、mode-transition-optimization、optimization-integration、platform-awareness
+- Level 1-4：所有 workflow、task-tracking、reflection、archive、architectural/phased-implementation 等規則
+- Phases：CreativePhase（architecture / optimized-creative-template）
+- Visual Maps：van_mode_split（含 van-qa-*）、archive/creative/implement/plan/qa/reflect/van-mode-map
+- Main：`main.mdc`、`main-optimized.mdc`
+
+## 工具說明（`sequential-thinking`）
+- 來源：`.cursor/mcp.json` 中的 `sequential-thinking` MCP 服務
+- 目的：提供可重入、可修正、可分支的多步推理框架，支援在實作、規劃、設計與檢查階段的結構化思考
+
+### 參數對應
+- `thought`：單一步驟思考內容（可為分析、假設、修正、驗證）
+- `nextThoughtNeeded`：是否需要進入下一步推理（true/false）
+- `thoughtNumber`：目前步驟序號（>=1）
+- `totalThoughts`：預估總步數（可動態上修/下修）
+- `isRevision`：是否為對前一步驟的修正（true/false）
+- `revisesThought`：若為修正，指定被修正的步驟編號
+- `branchFromThought`、`branchId`：分支推理時的分支源與分支識別
+- `needsMoreThoughts`：到達看似結尾時，如仍需要更多思考，設為 true
+
+## 使用時機（各層規則的一致約定）
+- 當任務包含 2+ 邏輯步驟、需要比較選項、或需要在不確定下逐步逼近解答
+- 當需在 CREATIVE/PLAN/IMPLEMENT 階段做決策或排疑；或在 QA/REFLECT 階段做結論驗證
+- 當需避免一次性長輸出，改以短迭代步驟逐步收斂
+
+## 操作原則
+1) 小步快跑：先估 `totalThoughts`，每步聚焦單一子問題；必要時調整總步數
+2) 即時修正：允許 `isRevision: true` 修正先前步驟；避免帶錯誤前提前進
+3) 可分支探索：在方案多條件權衡時，使用 `branchFromThought/branchId` 做平行比較
+4) 嚴控收斂：當有初步解法時產生「解答假設」，再以 1-2 步驗證；若不滿意，再展開
+5) 結尾標準：`nextThoughtNeeded: false` 僅在答案可被接受且與需求對齊時
+
+## 最小流程模板
+```markdown
+STEP 1 目標與邊界 → 設 `totalThoughts`、列出關鍵約束
+STEP 2 選項盤點/風險辨識 → 形成初步傾向
+STEP 3 解答假設（最小可行）→ 明確化假設與驗證條件
+STEP 4 驗證（必要時修正或分支）→ 通過則收斂，否則展開 STEP 2/3 的修正
+STEP 5 定稿輸出（含短總結與後續行動）
+```
+
+## 各模式整合（Hooks 表）
+
+| 模式 | 何時觸發 sequential-thinking | 何時觸發 Context7/Angular CLI | 轉場產物 |
+|---|---|---|---|
+| VAN | 複雜度初判（需要下一步資訊時） | Y/N 決策後，如需文件依據 | Transition Summary（level 決定） |
+| PLAN | 任務拆解、依賴判斷 | 為每個技術點檢索一次（Angular 優先 CLI；非 Angular 走 Context7） | Transition: PLAN→CREATIVE 輸出需求索引 |
+| CREATIVE | 選項盤點/分析/收斂每一步 | 每一候選方案至少一次檢索佐證 | Decision Log + Transition: CREATIVE→IMPLEMENT |
+| IMPLEMENT | 遇阻或關鍵 API/型別抉擇 | 針對具體 API/版本差異檢索 | Implementation Notes（含來源） |
+| QA | 不確定/回歸/變更日誌需要時 | 對照官方變更或 API 差異 | QA Notes（含來源） |
+| REFLECT/ARCHIVE | 提煉成功關鍵與模式 | 必要時補全官方依據鏈結 | Reflection/Archive（來源可追溯） |
+
+## Transition Document 欄位定義
+
+```markdown
+# Transition Summary
+- from/to: [Mode]
+- taskId: [id]
+- complexityLevel: [1-4]
+- decisionTrace: [sequential-thinking 步驟摘要]
+- docSources:
+  - type: [Context7|AngularCLI]
+  - libraryId: [/org/project or N/A]
+  - topic: [e.g., routing]
+  - tokens: [requested tokens]
+  - urls: [list]
+- nextSteps: [1..N]
+```
+
+## 與既有規則的契合
+- 與 `complexity-decision-tree.mdc`：先用 VAN 決定 Level，後以階段性思考分步規劃
+- 與 `creative-phase-*`：將選項/分析/決策/指引對應至連續步驟，保留修正與分支
+- 與 `mode-transition-optimization.mdc`：每階段結尾輸出 Transition Summary（含 docSources）
+- 與 `command-execution.mdc`：複雜指令序列先用階段性思考產生最小安全序列
+
+## 輸出規範（對話層）
+- 每一步保持精簡：1-4 句完成一個明確子目標
+- 僅在必要時展開細節；否則維持高訊噪比
+- 完成時提供：
+  - 最終結論（一句話）
+  - 關鍵依據（1-3 點）
+  - 下一步行動（1-3 項，可選）
+
+## 呼叫樣式（示意）
+```json
+{
+  "thought": "比較兩種策略，傾向方案 A 因維護性較佳",
+  "nextThoughtNeeded": true,
+  "thoughtNumber": 2,
+  "totalThoughts": 4
+}
+```
+
+## 防呆與邊界
+- 最高 8-10 步作為軟上限；必要時合併步驟或產生分支摘要後收斂
+- 嚴禁無限循環；若阻塞超過 2 次修正，輸出「阻塞點」與可行替代路徑
+- 保持與 Angular 20/現代語法與最佳實踐一致（若涉 Angular 決策）
+
+## 最終產物要求
+- 當任務結束：
+  - 產出精簡總結（結論/依據/行動）
+  - 若有檔案編修，應依 Codacy 規則立即進行分析（僅針對變更檔）
+
+---
+
+### Auto-export（可選，省 token）
+- 完成思考步驟或做出決策時：
+  - 若屬 Transition：將摘要附加至 `memory-bank/transition.md`（填入 `docSources`、`decisionTraceId`）。
+  - 若屬 CREATIVE 決策：將選項/分析/決策附加至 `memory-bank/creative-phase/decision-log.md`（含 `docSources`）。
+- 僅寫必要欄位與短摘要，避免冗長。
+
+## 交叉連結
+- 參考：`context7-integration.mdc`（檢索流程與參數建議）
+- 參考：`isolation_rules/Core/mode-transition-optimization.mdc`（Transition 與 `DocSources`）
+
+## 最短樣例（思考步驟）
+```json
+{
+  "thought": "界定路由主題並決定是否需要官方檔",
+  "nextThoughtNeeded": true,
+  "thoughtNumber": 1,
+  "totalThoughts": 3
+}
+```

@@ -1,0 +1,205 @@
+---
+alwaysApply: true
+globs:
+  - "src/**/*.ts"
+  - "src/**/*.html"
+  - "src/**/*.less"
+  - "angular.json"
+  - "package.json"
+---
+
+# Minimalism for ng-alain (Angular 20) — 實用極簡準則
+
+> Less, but better.
+
+## 0) 指導原則（最少必要原則）
+- **聚焦必要**：只做當前需求；看見重複再抽象（避免過早最佳化/過度設計）。
+- **偏好內建**：先用 Angular/TypeScript/`@delon`/`ng-zorro-antd` 既有能力，再考慮第三方。
+- **單一責任**：一個檔案/元件只解一類問題；小而清晰、易測試。
+- **可讀優先**：先可讀、後效能；效能以量測為準（再優化）。
+- **預設現代**：Standalone、Signals、Typed Forms、現代控制流程（`@if`/`@for`/`@switch`）。
+
+---
+
+## 1) 專案基線（本倉庫特性）
+- 平台：Windows 11 + PowerShell；包管理：yarn（`packageManager: yarn@4.x`）
+- 前端：Angular 20（Standalone）、ng-alain、ng-zorro-antd、`@delon/*`
+- 建置：`@angular/build`（Vite/ESBuild）、ESLint、Stylelint
+- 典範：
+  - UI 優先使用 `ng-zorro-antd` 與 `@delon/abc` 元件
+  - 安全/權限使用 `@delon/auth`、ACL/守衛
+  - 快取/工具使用 `@delon/cache`、`@delon/util`
+
+---
+
+## 2) 檔案與結構（極簡版）
+- Standalone 元件靠近路由與使用處，保持扁平與可預期（避免深層巢狀）。
+- 每個元件包含最少檔案：`*.ts` +（必要時）`*.html`/`*.less`。
+- 命名清晰、小寫-kebab-case；一個資料夾不要塞過多不相關內容。
+- 共同邏輯用「函式/服務」分享，不急著抽核心庫。
+
+---
+
+## 3) Angular 20 現代實作要點
+- Standalone
+  - 使用 `bootstrapApplication()`；元件 `standalone: true`
+- Signals
+  - 本地狀態首選 `signal()`；衍生資料用 `computed()`；副作用用 `effect()`
+- Control Flow
+  - 模板使用 `@if/@for/@switch`；避免複雜表達式，抽到 TS
+- Typed Forms
+  - 表單使用強型別 `FormBuilder.nonNullable` 與自定驗證器
+- Change Detection / Zone
+  - 預設即可；需時可用 `provideZoneChangeDetection({ eventCoalescing: true })`
+- 路由與守衛
+  - 路由懶載、清楚分段；授權用守衛/ACL；Data/Resolve 精準輸入
+
+---
+
+## 4) ng-alain / ng-zorro / @delon 指南
+- UI 組件：優先 `ng-zorro-antd`；先查現有元件再自訂
+- 版型/導航：善用 ng-alain layout 與現成模板，避免重造輪子
+- 權限：`@delon/acl` + 路由守衛；頁面/按鈕雙層控管
+- 認證：`@delon/auth` 攔截器處理 Token / 錯誤；集中配置
+- 快取：`@delon/cache` 負責可控緩存（TTL/keys），避免到處手寫 `localStorage`
+
+---
+
+## 5) Do / Don’t（高頻清單）
+- Do
+  - 小元件、小服務、小函式；可測試、可重用
+  - 先 Signals 再 RxJS；跨組件資料再考慮 Store
+  - 表單一律 Typed；模板只描述，邏輯在 TS
+  - 攔截器統一處理認證、錯誤、日誌
+- Don’t
+  - 不為「也許將來」抽象；沒有重複就別抽
+  - 不在模板寫複雜邏輯/深層巢狀
+  - 不過度全域樣式；樣式靠近元件
+  - 不無故引入大型狀態管理/第三方庫
+
+---
+
+## 6) 小範本（可直接複用）
+
+### 6.1 bootstrapApplication（選配 Zone/Providers）
+```ts
+import { bootstrapApplication, provideZoneChangeDetection } from '@angular/core';
+import { provideRouter } from '@angular/router';
+import { AppComponent } from './app/app.component';
+import { routes } from './app/routes';
+
+bootstrapApplication(AppComponent, {
+  providers: [
+    provideRouter(routes),
+    provideZoneChangeDetection({ eventCoalescing: true }),
+  ],
+});
+```
+
+### 6.2 Standalone + Signals + 現代控制流程
+```ts
+import { Component, signal, computed } from '@angular/core';
+
+@Component({
+  standalone: true,
+  selector: 'demo-counter',
+  template: `
+    <section>
+      <h3>Count: {{ count() }}</h3>
+      @if (isEven()) { <span>even</span> } @else { <span>odd</span> }
+      <button (click)="inc()">+</button>
+      <button (click)="dec()">-</button>
+    </section>
+  `
+})
+export class DemoCounter {
+  readonly count = signal(0);
+  readonly isEven = computed(() => this.count() % 2 === 0);
+  inc() { this.count.update(v => v + 1); }
+  dec() { this.count.update(v => v - 1); }
+}
+```
+
+### 6.3 Typed Reactive Form
+```ts
+import { Component, inject } from '@angular/core';
+import { FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
+
+type LoginForm = {
+  email: string;
+  password: string;
+};
+
+@Component({
+  standalone: true,
+  imports: [ReactiveFormsModule],
+  selector: 'app-login-form',
+  template: `
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      <input formControlName="email" type="email" />
+      <input formControlName="password" type="password" />
+      <button type="submit" [disabled]="form.invalid">Login</button>
+    </form>
+  `
+})
+export class LoginFormComponent {
+  private fb = inject(FormBuilder);
+  form = this.fb.nonNullable.group<LoginForm>({
+    email: ['', [Validators.required, Validators.email]],
+    password: ['', [Validators.required, Validators.minLength(8)]],
+  });
+  submit() { if (this.form.valid) {/* call API */} }
+}
+```
+
+### 6.4 @delon/auth 攔截器骨架
+```ts
+import { HttpInterceptorFn, HttpRequest } from '@angular/common/http';
+import { inject } from '@angular/core';
+import { DelonAuthConfig, DA_SERVICE_TOKEN, ITokenService } from '@delon/auth';
+
+export const authInterceptor: HttpInterceptorFn = (req, next) => {
+  const tokenSvc = inject<ITokenService>(DA_SERVICE_TOKEN);
+  const token = tokenSvc.get()?.token;
+  const cloned = token ? req.clone({ setHeaders: { Authorization: `Bearer ${token}` } }) : req;
+  return next(cloned);
+};
+```
+
+---
+
+## 7) 品質基準（最小但足夠）
+- ESLint/Stylelint 全開，但只修「變更檔」
+- PR 檢視三件事：SRP、可讀性、可測試性
+- 需求文件以 `tasks.md` 為事實中心；其他文件只連結，不複製內容
+- 文件命名與位置守則統一（小寫-kebab-case；活檔 vs 歸檔分流）
+
+---
+
+## 8) 效能/安全（只做必要）
+- 效能：先量測（DevTools/Angular Profiler）；再針對性優化（Lazy、OnPush、memo、分割）
+- 安全：XSS/HTML 可信度靠 `DomSanitizer` 與 Angular 綁定機制；認證只在攔截器與服務處理
+
+---
+
+## 9) 工作流程（Windows + yarn）
+- 安裝：`yarn install`；啟動：`yarn start`
+- 產生：優先 `ng g` 指令；避免手寫樣板錯誤
+- 提交：只提交必要變更；訊息清楚（範例：feat/fix/chore）
+
+---
+
+## 10) 一句話檢查清單
+- 這段程式碼是否「現在就需要」？
+- 用了 Angular/`@delon` 既有能力了嗎？
+- 有重複才抽象；沒有就別抽。
+- 模板簡潔、邏輯在 TS；類別小、命名清楚。
+- 沒量測，就不動效能。
+
+---
+
+## 11) 文件檢索優先序（極簡）
+- 先官方：Angular 內容用 `angular-cli.search_documentation`，只取必要段落。
+- 再第三方：非 Angular 或周邊套件用 Context7（`resolve-library-id` → `get-library-docs`），tokens 建議 1500–3000。
+- 決策驅動：先用 `sequential-thinking` 明確目標與驗證條件，再檢索。
+- 來源可追溯：回答附 1–2 條權威來源連結即可，避免冗長。
