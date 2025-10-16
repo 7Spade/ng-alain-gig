@@ -301,336 +301,336 @@ src/
 │   │   │   └── index.ts
 │   │   │
 │   │   ├── organization/                       # 組織模組 ✨ (繼承 Account)
-│   │   │   ├── presentation/
+│   │   │   ├── presentation/                   # 展示層
 │   │   │   │   ├── components/
-│   │   │   │   │   ├── organization-card.component.ts
-│   │   │   │   │   ├── organization-form.component.ts
-│   │   │   │   │   ├── organization-list.component.ts
-│   │   │   │   │   ├── team-management.component.ts
-│   │   │   │   │   ├── member-management.component.ts
-│   │   │   │   │   └── project-assignment.component.ts
+│   │   │   │   │   ├── organization-card.component.ts        # 組織卡片元件
+│   │   │   │   │   ├── organization-form.component.ts        # 組織表單元件
+│   │   │   │   │   ├── organization-list.component.ts        # 組織列表元件
+│   │   │   │   │   ├── team-management.component.ts        # 團隊管理元件
+│   │   │   │   │   ├── member-management.component.ts      # 成員管理元件
+│   │   │   │   │   └── project-assignment.component.ts     # 專案分配元件
 │   │   │   │   ├── pages/
-│   │   │   │   │   ├── organization-list.page.ts
-│   │   │   │   │   ├── organization-detail.page.ts
-│   │   │   │   │   └── organization-settings.page.ts
+│   │   │   │   │   ├── organization-list.page.ts            # 組織列表頁面
+│   │   │   │   │   ├── organization-detail.page.ts          # 組織詳情頁面
+│   │   │   │   │   └── organization-settings.page.ts        # 組織設定頁面
 │   │   │   │   └── state/
-│   │   │   │       └── organization-state.service.ts
-│   │   │   ├── application/
+│   │   │   │       └── organization-state.service.ts        # 組織狀態服務
+│   │   │   ├── application/                    # 應用層
 │   │   │   │   ├── services/
-│   │   │   │   │   ├── organization-application.service.ts
-│   │   │   │   │   ├── member-management.service.ts
-│   │   │   │   │   ├── team-management.service.ts
-│   │   │   │   │   └── project-assignment.service.ts
+│   │   │   │   │   ├── organization-application.service.ts  # 組織應用服務
+│   │   │   │   │   ├── member-management.service.ts        # 成員管理服務
+│   │   │   │   │   ├── team-management.service.ts          # 團隊管理服務
+│   │   │   │   │   └── project-assignment.service.ts       # 專案分配服務
 │   │   │   │   ├── commands/
-│   │   │   │   │   ├── create-organization.command.ts
-│   │   │   │   │   ├── update-organization.command.ts
-│   │   │   │   │   ├── invite-member.command.ts
-│   │   │   │   │   └── create-team.command.ts
+│   │   │   │   │   ├── create-organization.command.ts      # 建立組織命令
+│   │   │   │   │   ├── update-organization.command.ts      # 更新組織命令
+│   │   │   │   │   ├── invite-member.command.ts            # 邀請成員命令
+│   │   │   │   │   └── create-team.command.ts              # 建立團隊命令
 │   │   │   │   └── queries/
-│   │   │   │       ├── get-organization.query.ts
-│   │   │   │       ├── get-members.query.ts
-│   │   │   │       └── get-teams.query.ts
-│   │   │   ├── domain/
+│   │   │   │       ├── get-organization.query.ts            # 查詢組織查詢
+│   │   │   │       ├── get-members.query.ts                 # 查詢成員查詢
+│   │   │   │       └── get-teams.query.ts                   # 查詢團隊查詢
+│   │   │   ├── domain/                         # 領域層
 │   │   │   │   ├── aggregates/
 │   │   │   │   │   └── organization.aggregate.ts         # 繼承 Account Aggregate
 │   │   │   │   ├── entities/
 │   │   │   │   │   ├── organization.entity.ts            # 繼承 Account Entity
-│   │   │   │   │   ├── member.entity.ts
-│   │   │   │   │   ├── team.entity.ts
-│   │   │   │   │   │   └── project-assignment.entity.ts
+│   │   │   │   │   ├── member.entity.ts                   # 成員實體
+│   │   │   │   │   ├── team.entity.ts                     # 團隊實體
+│   │   │   │   │   │   └── project-assignment.entity.ts   # 專案分配實體
 │   │   │   │   ├── value-objects/
-│   │   │   │   │   ├── organization-profile.vo.ts
-│   │   │   │   │   ├── member-info.vo.ts
-│   │   │   │   │   ├── team-info.vo.ts
-│   │   │   │   │   └── project-assignment.vo.ts
+│   │   │   │   │   ├── organization-profile.vo.ts         # 組織檔案值物件
+│   │   │   │   │   ├── member-info.vo.ts                   # 成員資訊值物件
+│   │   │   │   │   ├── team-info.vo.ts                     # 團隊資訊值物件
+│   │   │   │   │   └── project-assignment.vo.ts            # 專案分配值物件
 │   │   │   │   ├── events/
-│   │   │   │   │   ├── organization-created.event.ts
-│   │   │   │   │   ├── member-invited.event.ts
-│   │   │   │   │   └── team-created.event.ts
+│   │   │   │   │   ├── organization-created.event.ts       # 組織建立事件
+│   │   │   │   │   ├── member-invited.event.ts            # 成員邀請事件
+│   │   │   │   │   └── team-created.event.ts               # 團隊建立事件
 │   │   │   │   ├── services/
-│   │   │   │   │   ├── organization-domain.service.ts
-│   │   │   │   │   ├── member-domain.service.ts
-│   │   │   │   │   └── team-domain.service.ts
+│   │   │   │   │   ├── organization-domain.service.ts     # 組織領域服務
+│   │   │   │   │   ├── member-domain.service.ts           # 成員領域服務
+│   │   │   │   │   └── team-domain.service.ts             # 團隊領域服務
 │   │   │   │   └── repositories/
-│   │   │   │       ├── organization.repository.interface.ts
-│   │   │   │       ├── member.repository.interface.ts
-│   │   │   │       └── team.repository.interface.ts
-│   │   │   ├── infrastructure/
+│   │   │   │       ├── organization.repository.interface.ts # 組織儲存庫介面
+│   │   │   │       ├── member.repository.interface.ts      # 成員儲存庫介面
+│   │   │   │       └── team.repository.interface.ts        # 團隊儲存庫介面
+│   │   │   ├── infrastructure/                 # 基礎設施層
 │   │   │   │   ├── repositories/
-│   │   │   │   │   ├── firestore-organization.repository.ts
-│   │   │   │   │   ├── firestore-member.repository.ts
-│   │   │   │   │   └── firestore-team.repository.ts
+│   │   │   │   │   ├── firestore-organization.repository.ts # Firestore 組織儲存庫
+│   │   │   │   │   ├── firestore-member.repository.ts       # Firestore 成員儲存庫
+│   │   │   │   │   └── firestore-team.repository.ts         # Firestore 團隊儲存庫
 │   │   │   │   ├── event-handlers/
-│   │   │   │   │   ├── organization-event.handler.ts
-│   │   │   │   │   ├── member-event.handler.ts
-│   │   │   │   │   └── team-event.handler.ts
+│   │   │   │   │   ├── organization-event.handler.ts        # 組織事件處理器
+│   │   │   │   │   ├── member-event.handler.ts              # 成員事件處理器
+│   │   │   │   │   └── team-event.handler.ts                # 團隊事件處理器
 │   │   │   │   ├── external-services/
-│   │   │   │   │   ├── license-verification.service.ts
-│   │   │   │   │   ├── organization-notification.service.ts
-│   │   │   │   │   └── organization-audit.service.ts
+│   │   │   │   │   ├── license-verification.service.ts     # 執照驗證服務
+│   │   │   │   │   ├── organization-notification.service.ts # 組織通知服務
+│   │   │   │   │   └── organization-audit.service.ts        # 組織審計服務
 │   │   │   │   └── integrations/
-│   │   │   │       ├── user-integration.service.ts
-│   │   │   │       └── project-integration.service.ts
-│   │   │   ├── organization.routes.ts
-│   │   │   └── index.ts
+│   │   │   │       ├── user-integration.service.ts          # 用戶整合服務
+│   │   │   │       └── project-integration.service.ts       # 專案整合服務
+│   │   │   ├── organization.routes.ts                       # 組織路由配置
+│   │   │   └── index.ts                                     # 組織模組匯出
 │   │   │
 │   │   ├── project/                            # 專案模組 ✨
-│   │   │   ├── presentation/
+│   │   │   ├── presentation/                   # 展示層
 │   │   │   │   ├── components/
 │   │   │   │   │   ├── project/
-│   │   │   │   │   │   ├── project-card.component.ts
-│   │   │   │   │   │   ├── project-form.component.ts
-│   │   │   │   │   │   ├── project-list.component.ts
-│   │   │   │   │   │   └── project-detail.component.ts
+│   │   │   │   │   │   ├── project-card.component.ts        # 專案卡片元件
+│   │   │   │   │   │   ├── project-form.component.ts        # 專案表單元件
+│   │   │   │   │   │   ├── project-list.component.ts        # 專案列表元件
+│   │   │   │   │   │   └── project-detail.component.ts      # 專案詳情元件
 │   │   │   │   │   ├── tasks/
-│   │   │   │   │   │   ├── task-management.component.ts
-│   │   │   │   │   │   ├── task-list.component.ts
-│   │   │   │   │   │   ├── task-form.component.ts
-│   │   │   │   │   │   └── task-detail.component.ts
+│   │   │   │   │   │   ├── task-management.component.ts     # 任務管理元件
+│   │   │   │   │   │   ├── task-list.component.ts           # 任務列表元件
+│   │   │   │   │   │   ├── task-form.component.ts           # 任務表單元件
+│   │   │   │   │   │   └── task-detail.component.ts         # 任務詳情元件
 │   │   │   │   │   ├── documents/
-│   │   │   │   │   │   ├── document-management.component.ts
-│   │   │   │   │   │   ├── document-list.component.ts
-│   │   │   │   │   │   ├── document-upload.component.ts
-│   │   │   │   │   │   └── document-viewer.component.ts
+│   │   │   │   │   │   ├── document-management.component.ts # 文件管理元件
+│   │   │   │   │   │   ├── document-list.component.ts       # 文件列表元件
+│   │   │   │   │   │   ├── document-upload.component.ts     # 文件上傳元件
+│   │   │   │   │   │   └── document-viewer.component.ts     # 文件檢視元件
 │   │   │   │   │   ├── cost/
-│   │   │   │   │   │   ├── cost-budget.component.ts
-│   │   │   │   │   │   ├── cost-actual.component.ts
-│   │   │   │   │   │   ├── cost-forecast.component.ts
-│   │   │   │   │   │   ├── cost-variance.component.ts
-│   │   │   │   │   │   └── cost-breakdown.component.ts
+│   │   │   │   │   │   ├── cost-budget.component.ts         # 預算元件
+│   │   │   │   │   │   ├── cost-actual.component.ts         # 實際成本元件
+│   │   │   │   │   │   ├── cost-forecast.component.ts       # 成本預測元件
+│   │   │   │   │   │   ├── cost-variance.component.ts       # 成本差異元件
+│   │   │   │   │   │   └── cost-breakdown.component.ts      # 成本分解元件
 │   │   │   │   │   ├── reports/
-│   │   │   │   │   │   ├── daily-report.component.ts
-│   │   │   │   │   │   ├── inspection-report.component.ts
-│   │   │   │   │   │   ├── analytics-report.component.ts
-│   │   │   │   │   │   └── gantt-chart.component.ts
+│   │   │   │   │   │   ├── daily-report.component.ts        # 日報元件
+│   │   │   │   │   │   ├── inspection-report.component.ts   # 查驗報告元件
+│   │   │   │   │   │   ├── analytics-report.component.ts    # 分析報告元件
+│   │   │   │   │   │   └── gantt-chart.component.ts         # 甘特圖元件
 │   │   │   │   │   └── materials/
-│   │   │   │   │       ├── materials-management.component.ts
-│   │   │   │   │       ├── equipment-management.component.ts
-│   │   │   │   │       └── safety-records.component.ts
+│   │   │   │   │       ├── materials-management.component.ts # 材料管理元件
+│   │   │   │   │       ├── equipment-management.component.ts # 設備管理元件
+│   │   │   │   │       └── safety-records.component.ts      # 安全記錄元件
 │   │   │   │   ├── pages/
-│   │   │   │   │   ├── project-list.page.ts
-│   │   │   │   │   ├── project-detail.page.ts
-│   │   │   │   │   ├── project-dashboard.page.ts
-│   │   │   │   │   └── project-reports.page.ts
+│   │   │   │   │   ├── project-list.page.ts                 # 專案列表頁面
+│   │   │   │   │   ├── project-detail.page.ts               # 專案詳情頁面
+│   │   │   │   │   ├── project-dashboard.page.ts            # 專案儀表板頁面
+│   │   │   │   │   └── project-reports.page.ts              # 專案報告頁面
 │   │   │   │   └── state/
-│   │   │   │       ├── project-state.service.ts
-│   │   │   │       ├── task-state.service.ts
-│   │   │   │       └── cost-state.service.ts
-│   │   │   ├── application/
+│   │   │   │       ├── project-state.service.ts             # 專案狀態服務
+│   │   │   │       ├── task-state.service.ts                # 任務狀態服務
+│   │   │   │       └── cost-state.service.ts                # 成本狀態服務
+│   │   │   ├── application/                    # 應用層
 │   │   │   │   ├── services/
-│   │   │   │   │   ├── project-application.service.ts
-│   │   │   │   │   ├── task-management.service.ts
-│   │   │   │   │   ├── document-management.service.ts
-│   │   │   │   │   ├── cost-control.service.ts
-│   │   │   │   │   ├── report.service.ts
-│   │   │   │   │   └── gantt-chart.service.ts
+│   │   │   │   │   ├── project-application.service.ts      # 專案應用服務
+│   │   │   │   │   ├── task-management.service.ts          # 任務管理服務
+│   │   │   │   │   ├── document-management.service.ts      # 文件管理服務
+│   │   │   │   │   ├── cost-control.service.ts             # 成本控制服務
+│   │   │   │   │   ├── report.service.ts                    # 報告服務
+│   │   │   │   │   └── gantt-chart.service.ts               # 甘特圖服務
 │   │   │   │   ├── commands/
-│   │   │   │   │   ├── create-project.command.ts
-│   │   │   │   │   ├── create-task.command.ts
-│   │   │   │   │   ├── update-task.command.ts
-│   │   │   │   │   ├── create-document.command.ts
-│   │   │   │   │   ├── create-budget.command.ts
-│   │   │   │   │   ├── update-cost.command.ts
-│   │   │   │   │   ├── create-daily-report.command.ts
-│   │   │   │   │   └── generate-gantt-data.command.ts
+│   │   │   │   │   ├── create-project.command.ts            # 建立專案命令
+│   │   │   │   │   ├── create-task.command.ts               # 建立任務命令
+│   │   │   │   │   ├── update-task.command.ts               # 更新任務命令
+│   │   │   │   │   ├── create-document.command.ts           # 建立文件命令
+│   │   │   │   │   ├── create-budget.command.ts             # 建立預算命令
+│   │   │   │   │   ├── update-cost.command.ts               # 更新成本命令
+│   │   │   │   │   ├── create-daily-report.command.ts       # 建立日報命令
+│   │   │   │   │   └── generate-gantt-data.command.ts       # 生成甘特圖資料命令
 │   │   │   │   └── queries/
-│   │   │   │       ├── get-project.query.ts
-│   │   │   │       ├── get-tasks.query.ts
-│   │   │   │       ├── get-documents.query.ts
-│   │   │   │       ├── get-cost-data.query.ts
-│   │   │   │       └── get-gantt-data.query.ts
-│   │   │   ├── domain/
+│   │   │   │       ├── get-project.query.ts                 # 查詢專案查詢
+│   │   │   │       ├── get-tasks.query.ts                   # 查詢任務查詢
+│   │   │   │       ├── get-documents.query.ts               # 查詢文件查詢
+│   │   │   │       ├── get-cost-data.query.ts               # 查詢成本資料查詢
+│   │   │   │       └── get-gantt-data.query.ts              # 查詢甘特圖資料查詢
+│   │   │   ├── domain/                         # 領域層
 │   │   │   │   ├── aggregates/
-│   │   │   │   │   └── project.aggregate.ts
+│   │   │   │   │   └── project.aggregate.ts                 # 專案聚合根
 │   │   │   │   ├── entities/
-│   │   │   │   │   ├── project.entity.ts
-│   │   │   │   │   ├── milestone.entity.ts
-│   │   │   │   │   ├── task.entity.ts
-│   │   │   │   │   ├── document.entity.ts
-│   │   │   │   │   ├── cost.entity.ts
-│   │   │   │   │   ├── report.entity.ts
-│   │   │   │   │   ├── material.entity.ts
-│   │   │   │   │   └── equipment.entity.ts
+│   │   │   │   │   ├── project.entity.ts                    # 專案實體
+│   │   │   │   │   ├── milestone.entity.ts                 # 里程碑實體
+│   │   │   │   │   ├── task.entity.ts                      # 任務實體
+│   │   │   │   │   ├── document.entity.ts                  # 文件實體
+│   │   │   │   │   ├── cost.entity.ts                      # 成本實體
+│   │   │   │   │   ├── report.entity.ts                    # 報告實體
+│   │   │   │   │   ├── material.entity.ts                  # 材料實體
+│   │   │   │   │   └── equipment.entity.ts                 # 設備實體
 │   │   │   │   ├── value-objects/
-│   │   │   │   │   ├── project-info.vo.ts
-│   │   │   │   │   ├── milestone-info.vo.ts
-│   │   │   │   │   ├── task-info.vo.ts
-│   │   │   │   │   ├── document-info.vo.ts
-│   │   │   │   │   ├── cost-info.vo.ts
-│   │   │   │   │   └── report-info.vo.ts
+│   │   │   │   │   ├── project-info.vo.ts                  # 專案資訊值物件
+│   │   │   │   │   ├── milestone-info.vo.ts                # 里程碑資訊值物件
+│   │   │   │   │   ├── task-info.vo.ts                     # 任務資訊值物件
+│   │   │   │   │   ├── document-info.vo.ts                 # 文件資訊值物件
+│   │   │   │   │   ├── cost-info.vo.ts                     # 成本資訊值物件
+│   │   │   │   │   └── report-info.vo.ts                   # 報告資訊值物件
 │   │   │   │   ├── events/
-│   │   │   │   │   ├── project-created.event.ts
-│   │   │   │   │   ├── task-completed.event.ts
-│   │   │   │   │   ├── milestone-reached.event.ts
-│   │   │   │   │   └── cost-updated.event.ts
+│   │   │   │   │   ├── project-created.event.ts            # 專案建立事件
+│   │   │   │   │   ├── task-completed.event.ts             # 任務完成事件
+│   │   │   │   │   ├── milestone-reached.event.ts          # 里程碑達成事件
+│   │   │   │   │   └── cost-updated.event.ts               # 成本更新事件
 │   │   │   │   ├── services/
-│   │   │   │   │   ├── project-domain.service.ts
-│   │   │   │   │   ├── milestone-domain.service.ts
-│   │   │   │   │   ├── task-domain.service.ts
-│   │   │   │   │   └── cost-domain.service.ts
+│   │   │   │   │   ├── project-domain.service.ts           # 專案領域服務
+│   │   │   │   │   ├── milestone-domain.service.ts         # 里程碑領域服務
+│   │   │   │   │   ├── task-domain.service.ts              # 任務領域服務
+│   │   │   │   │   └── cost-domain.service.ts              # 成本領域服務
 │   │   │   │   └── repositories/
-│   │   │   │       ├── project.repository.interface.ts
-│   │   │   │       ├── task.repository.interface.ts
-│   │   │   │       ├── document.repository.interface.ts
-│   │   │   │       └── cost.repository.interface.ts
-│   │   │   ├── infrastructure/
+│   │   │   │       ├── project.repository.interface.ts     # 專案儲存庫介面
+│   │   │   │       ├── task.repository.interface.ts        # 任務儲存庫介面
+│   │   │   │       ├── document.repository.interface.ts    # 文件儲存庫介面
+│   │   │   │       └── cost.repository.interface.ts        # 成本儲存庫介面
+│   │   │   ├── infrastructure/                 # 基礎設施層
 │   │   │   │   ├── repositories/
-│   │   │   │   │   ├── firestore-project.repository.ts
-│   │   │   │   │   ├── firestore-task.repository.ts
-│   │   │   │   │   ├── firestore-document.repository.ts
-│   │   │   │   │   └── firestore-cost.repository.ts
+│   │   │   │   │   ├── firestore-project.repository.ts     # Firestore 專案儲存庫
+│   │   │   │   │   ├── firestore-task.repository.ts        # Firestore 任務儲存庫
+│   │   │   │   │   ├── firestore-document.repository.ts    # Firestore 文件儲存庫
+│   │   │   │   │   └── firestore-cost.repository.ts        # Firestore 成本儲存庫
 │   │   │   │   ├── event-handlers/
-│   │   │   │   │   ├── project-event.handler.ts
-│   │   │   │   │   ├── task-event.handler.ts
-│   │   │   │   │   ├── document-event.handler.ts
-│   │   │   │   │   └── cost-event.handler.ts
+│   │   │   │   │   ├── project-event.handler.ts            # 專案事件處理器
+│   │   │   │   │   ├── task-event.handler.ts               # 任務事件處理器
+│   │   │   │   │   ├── document-event.handler.ts           # 文件事件處理器
+│   │   │   │   │   └── cost-event.handler.ts               # 成本事件處理器
 │   │   │   │   ├── external-services/
-│   │   │   │   │   ├── file-storage.service.ts
-│   │   │   │   │   ├── project-notification.service.ts
-│   │   │   │   │   └── project-audit.service.ts
+│   │   │   │   │   ├── file-storage.service.ts             # 檔案儲存服務
+│   │   │   │   │   ├── project-notification.service.ts     # 專案通知服務
+│   │   │   │   │   └── project-audit.service.ts            # 專案審計服務
 │   │   │   │   └── integrations/
-│   │   │   │       ├── organization-integration.service.ts
-│   │   │   │       ├── user-integration.service.ts
-│   │   │   │       └── team-integration.service.ts
-│   │   │   ├── project.routes.ts
-│   │   │   └── index.ts
+│   │   │   │       ├── organization-integration.service.ts # 組織整合服務
+│   │   │   │       ├── user-integration.service.ts         # 用戶整合服務
+│   │   │   │       └── team-integration.service.ts         # 團隊整合服務
+│   │   │   ├── project.routes.ts                           # 專案路由配置
+│   │   │   └── index.ts                                     # 專案模組匯出
 │   │   │
 │   │   ├── social/                             # 社交模組 ✨
-│   │   │   ├── presentation/
+│   │   │   ├── presentation/                   # 展示層
 │   │   │   │   ├── components/
 │   │   │   │   │   ├── following/
-│   │   │   │   │   │   ├── following-list.component.ts
-│   │   │   │   │   │   ├── followers-list.component.ts
-│   │   │   │   │   │   ├── follow-button.component.ts
-│   │   │   │   │   │   └── follow-status.component.ts
+│   │   │   │   │   │   ├── following-list.component.ts      # 追蹤列表元件
+│   │   │   │   │   │   ├── followers-list.component.ts      # 粉絲列表元件
+│   │   │   │   │   │   ├── follow-button.component.ts       # 追蹤按鈕元件
+│   │   │   │   │   │   └── follow-status.component.ts       # 追蹤狀態元件
 │   │   │   │   │   ├── discovery/
-│   │   │   │   │   │   ├── user-discovery.component.ts
-│   │   │   │   │   │   ├── user-recommendation.component.ts
-│   │   │   │   │   │   ├── user-search.component.ts
-│   │   │   │   │   │   └── user-profile-card.component.ts
+│   │   │   │   │   │   ├── user-discovery.component.ts      # 用戶發現元件
+│   │   │   │   │   │   ├── user-recommendation.component.ts # 用戶推薦元件
+│   │   │   │   │   │   ├── user-search.component.ts         # 用戶搜尋元件
+│   │   │   │   │   │   └── user-profile-card.component.ts   # 用戶檔案卡片元件
 │   │   │   │   │   ├── stats/
-│   │   │   │   │   │   ├── social-stats.component.ts
-│   │   │   │   │   │   ├── social-chart.component.ts
-│   │   │   │   │   │   └── social-leaderboard.component.ts
+│   │   │   │   │   │   ├── social-stats.component.ts        # 社交統計元件
+│   │   │   │   │   │   ├── social-chart.component.ts        # 社交圖表元件
+│   │   │   │   │   │   └── social-leaderboard.component.ts  # 社交排行榜元件
 │   │   │   │   │   └── network/
-│   │   │   │   │       ├── interaction.component.ts
-│   │   │   │   │       ├── mutual-connection.component.ts
-│   │   │   │   │       └── network.component.ts
+│   │   │   │   │       ├── interaction.component.ts         # 互動元件
+│   │   │   │   │       ├── mutual-connection.component.ts    # 共同連結元件
+│   │   │   │   │       └── network.component.ts             # 網絡元件
 │   │   │   │   ├── pages/
-│   │   │   │   │   ├── social-dashboard.page.ts
-│   │   │   │   │   ├── user-discovery.page.ts
-│   │   │   │   │   └── social-network.page.ts
+│   │   │   │   │   ├── social-dashboard.page.ts             # 社交儀表板頁面
+│   │   │   │   │   ├── user-discovery.page.ts               # 用戶發現頁面
+│   │   │   │   │   └── social-network.page.ts               # 社交網絡頁面
 │   │   │   │   └── state/
-│   │   │   │       ├── social-state.service.ts
-│   │   │   │       └── relationship-state.service.ts
-│   │   │   ├── application/
+│   │   │   │       ├── social-state.service.ts              # 社交狀態服務
+│   │   │   │       └── relationship-state.service.ts        # 關係狀態服務
+│   │   │   ├── application/                    # 應用層
 │   │   │   │   ├── services/
-│   │   │   │   │   ├── follow-application.service.ts
-│   │   │   │   │   ├── recommendation-application.service.ts
-│   │   │   │   │   ├── search-application.service.ts
-│   │   │   │   │   └── analytics-application.service.ts
+│   │   │   │   │   ├── follow-application.service.ts        # 追蹤應用服務
+│   │   │   │   │   ├── recommendation-application.service.ts # 推薦應用服務
+│   │   │   │   │   ├── search-application.service.ts        # 搜尋應用服務
+│   │   │   │   │   └── analytics-application.service.ts     # 分析應用服務
 │   │   │   │   ├── commands/
-│   │   │   │   │   ├── follow-user.command.ts
-│   │   │   │   │   ├── unfollow-user.command.ts
-│   │   │   │   │   ├── recommend-users.command.ts
-│   │   │   │   │   ├── search-users.command.ts
-│   │   │   │   │   └── generate-social-stats.command.ts
+│   │   │   │   │   ├── follow-user.command.ts               # 追蹤用戶命令
+│   │   │   │   │   ├── unfollow-user.command.ts             # 取消追蹤命令
+│   │   │   │   │   ├── recommend-users.command.ts           # 推薦用戶命令
+│   │   │   │   │   ├── search-users.command.ts              # 搜尋用戶命令
+│   │   │   │   │   └── generate-social-stats.command.ts     # 生成社交統計命令
 │   │   │   │   └── queries/
-│   │   │   │       ├── get-following.query.ts
-│   │   │   │       ├── get-followers.query.ts
-│   │   │   │       ├── get-recommendations.query.ts
-│   │   │   │       ├── search-users.query.ts
-│   │   │   │       └── get-social-stats.query.ts
-│   │   │   ├── domain/
+│   │   │   │       ├── get-following.query.ts               # 查詢追蹤查詢
+│   │   │   │       ├── get-followers.query.ts               # 查詢粉絲查詢
+│   │   │   │       ├── get-recommendations.query.ts         # 查詢推薦查詢
+│   │   │   │       ├── search-users.query.ts                # 搜尋用戶查詢
+│   │   │   │       └── get-social-stats.query.ts            # 查詢社交統計查詢
+│   │   │   ├── domain/                         # 領域層
 │   │   │   │   ├── aggregates/
-│   │   │   │   │   └── social-relation.aggregate.ts
+│   │   │   │   │   └── social-relation.aggregate.ts        # 社交關係聚合根
 │   │   │   │   ├── entities/
-│   │   │   │   │   ├── relationship.entity.ts
-│   │   │   │   │   ├── network.entity.ts
-│   │   │   │   │   └── mutual.entity.ts
+│   │   │   │   │   ├── relationship.entity.ts               # 關係實體
+│   │   │   │   │   ├── network.entity.ts                    # 網絡實體
+│   │   │   │   │   └── mutual.entity.ts                     # 共同關係實體
 │   │   │   │   ├── value-objects/
-│   │   │   │   │   ├── relationship-info.vo.ts
-│   │   │   │   │   ├── network-info.vo.ts
-│   │   │   │   │   └── social-stats.vo.ts
+│   │   │   │   │   ├── relationship-info.vo.ts              # 關係資訊值物件
+│   │   │   │   │   ├── network-info.vo.ts                   # 網絡資訊值物件
+│   │   │   │   │   └── social-stats.vo.ts                   # 社交統計值物件
 │   │   │   │   ├── events/
-│   │   │   │   │   ├── user-followed.event.ts
-│   │   │   │   │   └── user-unfollowed.event.ts
+│   │   │   │   │   ├── user-followed.event.ts               # 用戶被追蹤事件
+│   │   │   │   │   └── user-unfollowed.event.ts             # 用戶取消追蹤事件
 │   │   │   │   ├── services/
-│   │   │   │   │   ├── relationship-domain.service.ts
-│   │   │   │   │   ├── network-domain.service.ts
-│   │   │   │   │   ├── recommendation-domain.service.ts
-│   │   │   │   │   └── privacy-domain.service.ts
+│   │   │   │   │   ├── relationship-domain.service.ts       # 關係領域服務
+│   │   │   │   │   ├── network-domain.service.ts           # 網絡領域服務
+│   │   │   │   │   ├── recommendation-domain.service.ts    # 推薦領域服務
+│   │   │   │   │   └── privacy-domain.service.ts           # 隱私領域服務
 │   │   │   │   └── repositories/
-│   │   │   │       ├── social.repository.interface.ts
-│   │   │   │       ├── relationship.repository.interface.ts
-│   │   │   │       └── network.repository.interface.ts
-│   │   │   ├── infrastructure/
+│   │   │   │       ├── social.repository.interface.ts       # 社交儲存庫介面
+│   │   │   │       ├── relationship.repository.interface.ts # 關係儲存庫介面
+│   │   │   │       └── network.repository.interface.ts      # 網絡儲存庫介面
+│   │   │   ├── infrastructure/                 # 基礎設施層
 │   │   │   │   ├── repositories/
-│   │   │   │   │   ├── firestore-social.repository.ts
-│   │   │   │   │   ├── firestore-relationship.repository.ts
-│   │   │   │   │   └── firestore-network.repository.ts
+│   │   │   │   │   ├── firestore-social.repository.ts       # Firestore 社交儲存庫
+│   │   │   │   │   ├── firestore-relationship.repository.ts  # Firestore 關係儲存庫
+│   │   │   │   │   └── firestore-network.repository.ts      # Firestore 網絡儲存庫
 │   │   │   │   ├── engines/
-│   │   │   │   │   ├── recommendation.engine.ts
-│   │   │   │   │   ├── ml-service-integration.ts
-│   │   │   │   │   └── graph-analytics.service.ts
+│   │   │   │   │   ├── recommendation.engine.ts             # 推薦引擎
+│   │   │   │   │   ├── ml-service-integration.ts            # 機器學習服務整合
+│   │   │   │   │   └── graph-analytics.service.ts           # 圖形分析服務
 │   │   │   │   ├── event-handlers/
-│   │   │   │   │   ├── follow-event.handler.ts
-│   │   │   │   │   ├── recommendation-event.handler.ts
-│   │   │   │   │   └── social-stats-event.handler.ts
+│   │   │   │   │   ├── follow-event.handler.ts              # 追蹤事件處理器
+│   │   │   │   │   ├── recommendation-event.handler.ts      # 推薦事件處理器
+│   │   │   │   │   └── social-stats-event.handler.ts        # 社交統計事件處理器
 │   │   │   │   ├── external-services/
-│   │   │   │   │   ├── cache.service.ts
-│   │   │   │   │   └── queue.service.ts
+│   │   │   │   │   ├── cache.service.ts                     # 快取服務
+│   │   │   │   │   └── queue.service.ts                     # 佇列服務
 │   │   │   │   └── integrations/
-│   │   │   │       ├── user-integration.service.ts
-│   │   │   │       ├── organization-integration.service.ts
-│   │   │   │       └── project-integration.service.ts
-│   │   │   ├── social.routes.ts
-│   │   │   └── index.ts
+│   │   │   │       ├── user-integration.service.ts          # 用戶整合服務
+│   │   │   │       ├── organization-integration.service.ts  # 組織整合服務
+│   │   │   │       └── project-integration.service.ts       # 專案整合服務
+│   │   │   ├── social.routes.ts                             # 社交路由配置
+│   │   │   └── index.ts                                     # 社交模組匯出
 │   │   │
 │   │   ├── achievement/                        # 成就模組 ✨
-│   │   │   ├── presentation/
+│   │   │   ├── presentation/                   # 展示層
 │   │   │   │   ├── components/
 │   │   │   │   │   ├── display/
-│   │   │   │   │   │   ├── achievement-card.component.ts
-│   │   │   │   │   │   ├── achievement-list.component.ts
-│   │   │   │   │   │   ├── achievement-badge.component.ts
-│   │   │   │   │   │   └── achievement-progress.component.ts
+│   │   │   │   │   │   ├── achievement-card.component.ts      # 成就卡片元件
+│   │   │   │   │   │   ├── achievement-list.component.ts      # 成就列表元件
+│   │   │   │   │   │   ├── achievement-badge.component.ts     # 成就徽章元件
+│   │   │   │   │   │   └── achievement-progress.component.ts  # 成就進度元件
 │   │   │   │   │   ├── leaderboard/
-│   │   │   │   │   │   ├── leaderboard.component.ts
-│   │   │   │   │   │   ├── ranking-card.component.ts
-│   │   │   │   │   │   └── top-stats.component.ts
+│   │   │   │   │   │   ├── leaderboard.component.ts          # 排行榜元件
+│   │   │   │   │   │   ├── ranking-card.component.ts         # 排名卡片元件
+│   │   │   │   │   │   └── top-stats.component.ts            # 頂級統計元件
 │   │   │   │   │   ├── management/
-│   │   │   │   │   │   ├── achievement-management.component.ts
-│   │   │   │   │   │   ├── rule-management.component.ts
-│   │   │   │   │   │   └── category-management.component.ts
+│   │   │   │   │   │   ├── achievement-management.component.ts # 成就管理元件
+│   │   │   │   │   │   ├── rule-management.component.ts      # 規則管理元件
+│   │   │   │   │   │   └── category-management.component.ts   # 分類管理元件
 │   │   │   │   │   └── charts/
-│   │   │   │   │       ├── stats-chart.component.ts
-│   │   │   │   │       ├── progress-chart.component.ts
-│   │   │   │   │       └── achievement-timeline.component.ts
+│   │   │   │   │       ├── stats-chart.component.ts          # 統計圖表元件
+│   │   │   │   │       ├── progress-chart.component.ts       # 進度圖表元件
+│   │   │   │   │       └── achievement-timeline.component.ts # 成就時間軸元件
 │   │   │   │   ├── pages/
-│   │   │   │   │   ├── achievement-dashboard.page.ts
-│   │   │   │   │   ├── leaderboard.page.ts
-│   │   │   │   │   └── achievement-management.page.ts
+│   │   │   │   │   ├── achievement-dashboard.page.ts         # 成就儀表板頁面
+│   │   │   │   │   ├── leaderboard.page.ts                   # 排行榜頁面
+│   │   │   │   │   └── achievement-management.page.ts        # 成就管理頁面
 │   │   │   │   └── state/
-│   │   │   │       ├── achievement-state.service.ts
-│   │   │   │       └── progress-state.service.ts
-│   │   │   ├── application/
+│   │   │   │       ├── achievement-state.service.ts          # 成就狀態服務
+│   │   │   │       └── progress-state.service.ts             # 進度狀態服務
+│   │   │   ├── application/                    # 應用層
 │   │   │   │   ├── services/
-│   │   │   │   │   ├── achievement-application.service.ts
-│   │   │   │   │   ├── rule-engine.service.ts
-│   │   │   │   │   ├── statistics-application.service.ts
-│   │   │   │   │   └── notification-application.service.ts
+│   │   │   │   │   ├── achievement-application.service.ts    # 成就應用服務
+│   │   │   │   │   ├── rule-engine.service.ts              # 規則引擎服務
+│   │   │   │   │   ├── statistics-application.service.ts    # 統計應用服務
+│   │   │   │   │   └── notification-application.service.ts  # 通知應用服務
 │   │   │   │   ├── commands/
-│   │   │   │   │   ├── award-achievement.command.ts
-│   │   │   │   │   ├── update-progress.command.ts
-│   │   │   │   │   ├── evaluate-rule.command.ts
-│   │   │   │   │   ├── create-rule.command.ts
-│   │   │   │   │   ├── generate-stats.command.ts
-│   │   │   │   │   └── notify-achievement.command.ts
+│   │   │   │   │   ├── award-achievement.command.ts         # 頒發成就命令
+│   │   │   │   │   ├── update-progress.command.ts           # 更新進度命令
+│   │   │   │   │   ├── evaluate-rule.command.ts             # 評估規則命令
+│   │   │   │   │   ├── create-rule.command.ts               # 建立規則命令
+│   │   │   │   │   ├── generate-stats.command.ts            # 生成統計命令
+│   │   │   │   │   └── notify-achievement.command.ts        # 成就通知命令
 │   │   │   │   └── queries/
-│   │   │   │       ├── get-achievements.query.ts
-│   │   │   │       ├── get-leaderboard.query.ts
-│   │   │   │       └── get-progress.query.ts
+│   │   │   │       ├── get-achievements.query.ts            # 查詢成就查詢
+│   │   │   │       ├── get-leaderboard.query.ts             # 查詢排行榜查詢
+│   │   │   │       └── get-progress.query.ts                # 查詢進度查詢
 │   │   │   ├── domain/
 │   │   │   │   ├── aggregates/
 │   │   │   │   │   └── achievement.aggregate.ts
@@ -793,166 +793,166 @@ src/
 │   │   ├── components/                          # 共享元件
 │   │   │   ├── ui/
 │   │   │   │   ├── loading/
-│   │   │   │   │   ├── loading-spinner.component.ts
-│   │   │   │   │   ├── loading-skeleton.component.ts
-│   │   │   │   │   └── loading-overlay.component.ts
+│   │   │   │   │   ├── loading-spinner.component.ts         # 載入動畫元件
+│   │   │   │   │   ├── loading-skeleton.component.ts        # 載入骨架元件
+│   │   │   │   │   └── loading-overlay.component.ts        # 載入遮罩元件
 │   │   │   │   ├── dialog/
-│   │   │   │   │   ├── confirmation-dialog.component.ts
-│   │   │   │   │   ├── form-dialog.component.ts
-│   │   │   │   │   └── info-dialog.component.ts
+│   │   │   │   │   ├── confirmation-dialog.component.ts     # 確認對話框元件
+│   │   │   │   │   ├── form-dialog.component.ts            # 表單對話框元件
+│   │   │   │   │   └── info-dialog.component.ts            # 資訊對話框元件
 │   │   │   │   ├── form/
-│   │   │   │   │   ├── dynamic-form.component.ts
-│   │   │   │   │   ├── file-upload.component.ts
-│   │   │   │   │   ├── date-picker.component.ts
-│   │   │   │   │   └── rich-text-editor.component.ts
+│   │   │   │   │   ├── dynamic-form.component.ts           # 動態表單元件
+│   │   │   │   │   ├── file-upload.component.ts            # 檔案上傳元件
+│   │   │   │   │   ├── date-picker.component.ts            # 日期選擇器元件
+│   │   │   │   │   └── rich-text-editor.component.ts       # 富文本編輯器元件
 │   │   │   │   ├── layout/
-│   │   │   │   │   ├── page-header.component.ts
-│   │   │   │   │   ├── content-wrapper.component.ts
-│   │   │   │   │   ├── sidebar.component.ts
-│   │   │   │   │   └── breadcrumb.component.ts
+│   │   │   │   │   ├── page-header.component.ts            # 頁面標題元件
+│   │   │   │   │   ├── content-wrapper.component.ts        # 內容包裝器元件
+│   │   │   │   │   ├── sidebar.component.ts                # 側邊欄元件
+│   │   │   │   │   └── breadcrumb.component.ts             # 麵包屑元件
 │   │   │   │   ├── data-display/
-│   │   │   │   │   ├── data-table.component.ts
-│   │   │   │   │   ├── status-badge.component.ts
-│   │   │   │   │   ├── progress-bar.component.ts
-│   │   │   │   │   ├── avatar-group.component.ts
-│   │   │   │   │   └── tag-list.component.ts
+│   │   │   │   │   ├── data-table.component.ts             # 資料表格元件
+│   │   │   │   │   ├── status-badge.component.ts           # 狀態徽章元件
+│   │   │   │   │   ├── progress-bar.component.ts           # 進度條元件
+│   │   │   │   │   ├── avatar-group.component.ts           # 頭像群組元件
+│   │   │   │   │   └── tag-list.component.ts               # 標籤列表元件
 │   │   │   │   └── feedback/
-│   │   │   │       ├── toast.component.ts
-│   │   │   │       ├── alert.component.ts
-│   │   │   │       ├── empty-state.component.ts
-│   │   │   │       └── error-boundary.component.ts
+│   │   │   │       ├── toast.component.ts                  # 吐司通知元件
+│   │   │   │       ├── alert.component.ts                  # 警告元件
+│   │   │   │       ├── empty-state.component.ts            # 空狀態元件
+│   │   │   │       └── error-boundary.component.ts         # 錯誤邊界元件
 │   │   │   └── business/
-│   │   │       ├── user-avatar.component.ts
-│   │   │       ├── organization-logo.component.ts
-│   │   │       ├── project-status.component.ts
-│   │   │       ├── activity-timeline.component.ts
-│   │   │       └── permission-guard.component.ts
+│   │   │       ├── user-avatar.component.ts                # 用戶頭像元件
+│   │   │       ├── organization-logo.component.ts          # 組織標誌元件
+│   │   │       ├── project-status.component.ts             # 專案狀態元件
+│   │   │       ├── activity-timeline.component.ts          # 活動時間軸元件
+│   │   │       └── permission-guard.component.ts           # 權限守衛元件
 │   │   │
 │   │   ├── services/                            # 共享服務
 │   │   │   ├── api/
-│   │   │   │   ├── base-api.service.ts
-│   │   │   │   ├── http-client.service.ts
-│   │   │   │   └── api-error-handler.service.ts
+│   │   │   │   ├── base-api.service.ts                    # 基礎 API 服務
+│   │   │   │   ├── http-client.service.ts                 # HTTP 客戶端服務
+│   │   │   │   └── api-error-handler.service.ts           # API 錯誤處理服務
 │   │   │   ├── storage/
-│   │   │   │   ├── local-storage.service.ts
-│   │   │   │   ├── session-storage.service.ts
-│   │   │   │   └── indexeddb.service.ts
+│   │   │   │   ├── local-storage.service.ts               # 本地儲存服務
+│   │   │   │   ├── session-storage.service.ts             # 會話儲存服務
+│   │   │   │   └── indexeddb.service.ts                   # IndexedDB 服務
 │   │   │   ├── utility/
-│   │   │   │   ├── date-utils.service.ts
-│   │   │   │   ├── validation.service.ts
-│   │   │   │   ├── file-utils.service.ts
-│   │   │   │   ├── crypto.service.ts
-│   │   │   │   └── format.service.ts
+│   │   │   │   ├── date-utils.service.ts                  # 日期工具服務
+│   │   │   │   ├── validation.service.ts                  # 驗證服務
+│   │   │   │   ├── file-utils.service.ts                  # 檔案工具服務
+│   │   │   │   ├── crypto.service.ts                      # 加密服務
+│   │   │   │   └── format.service.ts                      # 格式化服務
 │   │   │   ├── navigation/
-│   │   │   │   ├── router.service.ts
-│   │   │   │   ├── breadcrumb.service.ts
-│   │   │   │   └── history.service.ts
+│   │   │   │   ├── router.service.ts                      # 路由服務
+│   │   │   │   ├── breadcrumb.service.ts                  # 麵包屑服務
+│   │   │   │   └── history.service.ts                     # 歷史服務
 │   │   │   └── theme/
-│   │   │       ├── theme.service.ts
-│   │   │       ├── dark-mode.service.ts
-│   │   │       └── responsive.service.ts
+│   │   │       ├── theme.service.ts                       # 主題服務
+│   │   │       ├── dark-mode.service.ts                   # 深色模式服務
+│   │   │       └── responsive.service.ts                  # 響應式服務
 │   │   │
 │   │   ├── models/                              # 共享模型
 │   │   │   ├── interfaces/
-│   │   │   │   ├── base.interface.ts
-│   │   │   │   ├── api-response.interface.ts
-│   │   │   │   ├── paginated-response.interface.ts
-│   │   │   │   ├── audit.interface.ts
-│   │   │   │   └── entity.interface.ts
+│   │   │   │   ├── base.interface.ts                      # 基礎介面
+│   │   │   │   ├── api-response.interface.ts              # API 回應介面
+│   │   │   │   ├── paginated-response.interface.ts         # 分頁回應介面
+│   │   │   │   ├── audit.interface.ts                     # 審計介面
+│   │   │   │   └── entity.interface.ts                    # 實體介面
 │   │   │   ├── types/
-│   │   │   │   ├── common.types.ts
-│   │   │   │   ├── api.types.ts
-│   │   │   │   ├── permissions.types.ts
-│   │   │   │   └── validation.types.ts
+│   │   │   │   ├── common.types.ts                        # 通用型別
+│   │   │   │   ├── api.types.ts                           # API 型別
+│   │   │   │   ├── permissions.types.ts                   # 權限型別
+│   │   │   │   └── validation.types.ts                    # 驗證型別
 │   │   │   ├── enums/
-│   │   │   │   ├── status.enum.ts
-│   │   │   │   ├── roles.enum.ts
-│   │   │   │   ├── permissions.enum.ts
-│   │   │   │   └── notification-types.enum.ts
+│   │   │   │   ├── status.enum.ts                         # 狀態列舉
+│   │   │   │   ├── roles.enum.ts                          # 角色列舉
+│   │   │   │   ├── permissions.enum.ts                    # 權限列舉
+│   │   │   │   └── notification-types.enum.ts             # 通知類型列舉
 │   │   │   └── dto/
-│   │   │       ├── base.dto.ts
-│   │   │       ├── pagination.dto.ts
-│   │   │       └── filter.dto.ts
+│   │   │       ├── base.dto.ts                            # 基礎 DTO
+│   │   │       ├── pagination.dto.ts                      # 分頁 DTO
+│   │   │       └── filter.dto.ts                          # 篩選 DTO
 │   │   │
 │   │   ├── pipes/                               # 共享管道
-│   │   │   ├── date-format.pipe.ts
-│   │   │   ├── file-size.pipe.ts
-│   │   │   ├── truncate.pipe.ts
-│   │   │   ├── safe-html.pipe.ts
-│   │   │   ├── currency-format.pipe.ts
-│   │   │   └── highlight.pipe.ts
+│   │   │   ├── date-format.pipe.ts                    # 日期格式化管道
+│   │   │   ├── file-size.pipe.ts                      # 檔案大小管道
+│   │   │   ├── truncate.pipe.ts                       # 截斷文字管道
+│   │   │   ├── safe-html.pipe.ts                      # 安全 HTML 管道
+│   │   │   ├── currency-format.pipe.ts                # 貨幣格式化管道
+│   │   │   └── highlight.pipe.ts                      # 高亮文字管道
 │   │   │
 │   │   ├── directives/                          # 共享指令
-│   │   │   ├── auto-focus.directive.ts
-│   │   │   ├── click-outside.directive.ts
-│   │   │   ├── lazy-load.directive.ts
-│   │   │   ├── tooltip.directive.ts
-│   │   │   ├── drag-drop.directive.ts
-│   │   │   └── infinite-scroll.directive.ts
+│   │   │   ├── auto-focus.directive.ts                 # 自動聚焦指令
+│   │   │   ├── click-outside.directive.ts               # 點擊外部指令
+│   │   │   ├── lazy-load.directive.ts                   # 延遲載入指令
+│   │   │   ├── tooltip.directive.ts                     # 工具提示指令
+│   │   │   ├── drag-drop.directive.ts                   # 拖拽指令
+│   │   │   └── infinite-scroll.directive.ts             # 無限滾動指令
 │   │   │
 │   │   ├── validators/                          # 共享驗證器
-│   │   │   ├── email.validator.ts
-│   │   │   ├── password.validator.ts
-│   │   │   ├── phone.validator.ts
-│   │   │   ├── url.validator.ts
-│   │   │   ├── file.validator.ts
-│   │   │   └── business.validator.ts
+│   │   │   ├── email.validator.ts                      # 郵箱驗證器
+│   │   │   ├── password.validator.ts                   # 密碼驗證器
+│   │   │   ├── phone.validator.ts                      # 電話驗證器
+│   │   │   ├── url.validator.ts                        # URL 驗證器
+│   │   │   ├── file.validator.ts                       # 檔案驗證器
+│   │   │   └── business.validator.ts                   # 業務驗證器
 │   │   │
 │   │   ├── guards/                              # 共享守衛
-│   │   │   ├── route-guard.ts
-│   │   │   ├── permission-guard.ts
-│   │   │   ├── role-guard.ts
-│   │   │   ├── unsaved-changes-guard.ts
-│   │   │   └── organization-context-guard.ts
+│   │   │   ├── route-guard.ts                        # 路由守衛
+│   │   │   ├── permission-guard.ts                   # 權限守衛
+│   │   │   ├── role-guard.ts                         # 角色守衛
+│   │   │   ├── unsaved-changes-guard.ts              # 未儲存變更守衛
+│   │   │   └── organization-context-guard.ts         # 組織上下文守衛
 │   │   │
 │   │   ├── interceptors/                        # 共享攔截器
-│   │   │   ├── error-handler.interceptor.ts
-│   │   │   ├── loading.interceptor.ts
-│   │   │   ├── cache.interceptor.ts
-│   │   │   ├── retry.interceptor.ts
-│   │   │   └── request-id.interceptor.ts
+│   │   │   ├── error-handler.interceptor.ts          # 錯誤處理攔截器
+│   │   │   ├── loading.interceptor.ts                # 載入攔截器
+│   │   │   ├── cache.interceptor.ts                  # 快取攔截器
+│   │   │   ├── retry.interceptor.ts                  # 重試攔截器
+│   │   │   └── request-id.interceptor.ts             # 請求 ID 攔截器
 │   │   │
 │   │   ├── utils/                               # 工具函數
-│   │   │   ├── array.utils.ts
-│   │   │   ├── object.utils.ts
-│   │   │   ├── string.utils.ts
-│   │   │   ├── date.utils.ts
-│   │   │   ├── file.utils.ts
-│   │   │   ├── validation.utils.ts
-│   │   │   ├── crypto.utils.ts
-│   │   │   └── format.utils.ts
+│   │   │   ├── array.utils.ts                       # 陣列工具函數
+│   │   │   ├── object.utils.ts                      # 物件工具函數
+│   │   │   ├── string.utils.ts                      # 字串工具函數
+│   │   │   ├── date.utils.ts                        # 日期工具函數
+│   │   │   ├── file.utils.ts                        # 檔案工具函數
+│   │   │   ├── validation.utils.ts                  # 驗證工具函數
+│   │   │   ├── crypto.utils.ts                      # 加密工具函數
+│   │   │   └── format.utils.ts                      # 格式化工具函數
 │   │   │
 │   │   ├── constants/                           # 常數定義
-│   │   │   ├── api.constants.ts
-│   │   │   ├── app.constants.ts
-│   │   │   ├── storage.constants.ts
-│   │   │   ├── validation.constants.ts
-│   │   │   └── business.constants.ts
+│   │   │   ├── api.constants.ts                      # API 常數
+│   │   │   ├── app.constants.ts                      # 應用常數
+│   │   │   ├── storage.constants.ts                  # 儲存常數
+│   │   │   ├── validation.constants.ts               # 驗證常數
+│   │   │   └── business.constants.ts                 # 業務常數
 │   │   │
 │   │   └── index.ts
 │   │
 │   ├── layout/                                 # 版面配置 ✨
 │   │   ├── components/
 │   │   │   ├── header/
-│   │   │   │   ├── header.component.ts
-│   │   │   │   ├── user-menu.component.ts
-│   │   │   │   ├── notification-bell.component.ts
-│   │   │   │   └── organization-switcher.component.ts
+│   │   │   │   ├── header.component.ts                    # 頁首元件
+│   │   │   │   ├── user-menu.component.ts                 # 用戶選單元件
+│   │   │   │   ├── notification-bell.component.ts         # 通知鈴鐺元件
+│   │   │   │   └── organization-switcher.component.ts     # 組織切換器元件
 │   │   │   ├── sidebar/
-│   │   │   │   ├── sidebar.component.ts
-│   │   │   │   ├── navigation-menu.component.ts
-│   │   │   │   └── menu-item.component.ts
+│   │   │   │   ├── sidebar.component.ts                   # 側邊欄元件
+│   │   │   │   ├── navigation-menu.component.ts           # 導航選單元件
+│   │   │   │   └── menu-item.component.ts                 # 選單項目元件
 │   │   │   ├── footer/
-│   │   │   │   └── footer.component.ts
+│   │   │   │   └── footer.component.ts                    # 頁尾元件
 │   │   │   └── layout/
-│   │   │       ├── main-layout.component.ts
-│   │   │       ├── auth-layout.component.ts
-│   │   │       └── fullscreen-layout.component.ts
+│   │   │       ├── main-layout.component.ts               # 主版面元件
+│   │   │       ├── auth-layout.component.ts               # 認證版面元件
+│   │   │       └── fullscreen-layout.component.ts         # 全螢幕版面元件
 │   │   ├── services/
-│   │   │   ├── layout.service.ts
-│   │   │   ├── navigation.service.ts
-│   │   │   └── sidebar.service.ts
-│   │   └── index.ts
+│   │   │   ├── layout.service.ts                          # 版面服務
+│   │   │   ├── navigation.service.ts                      # 導航服務
+│   │   │   └── sidebar.service.ts                         # 側邊欄服務
+│   │   └── index.ts                                        # 版面模組匯出
 │   │
 │   └── main.ts                                 # 應用程式入口
 │
