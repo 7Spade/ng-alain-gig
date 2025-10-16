@@ -189,6 +189,7 @@ src/
 │   │   │   │   ├── repositories/
 │   │   │   │   │   └── firestore-account.repository.ts   # Firestore 帳戶儲存庫
 │   │   │   │   └── index.ts
+│   │   │   ├── account.routes.ts                          # 帳戶路由配置
 │   │   │   └── index.ts
 │   │   │
 │   │   ├── user/                              # 用戶模組 ✨ (繼承 Account)
@@ -199,6 +200,7 @@ src/
 │   │   │   │   │   │   ├── registration.component.ts             # 註冊元件
 │   │   │   │   │   │   ├── forgot-password.component.ts          # 忘記密碼元件
 │   │   │   │   │   │   └── email-verification.component.ts       # 郵箱驗證元件
+│   │   │   │   │   └── routes.ts                                 # 認證元件路由配置
 │   │   │   │   │   ├── profile/
 │   │   │   │   │   │   ├── profile-card.component.ts             # 個人檔案卡片元件
 │   │   │   │   │   │   ├── profile-edit.component.ts             # 個人檔案編輯元件
@@ -221,7 +223,8 @@ src/
 │   │   │   │   ├── pages/
 │   │   │   │   │   ├── user-profile.page.ts                      # 用戶檔案頁面
 │   │   │   │   │   ├── user-settings.page.ts                     # 用戶設定頁面
-│   │   │   │   │   └── user-dashboard.page.ts                    # 用戶儀表板頁面
+│   │   │   │   │   ├── user-dashboard.page.ts                    # 用戶儀表板頁面
+│   │   │   │   │   └── routes.ts                                 # 頁面路由配置
 │   │   │   │   ├── state/
 │   │   │   │   │   ├── user-state.service.ts                     # 用戶狀態服務
 │   │   │   │   │   ├── auth-state.service.ts                     # 認證狀態服務
@@ -973,7 +976,8 @@ src/
 │   │   │       ├── rtl.component.ts           # RTL 小工具
 │   │   │       ├── search.component.ts        # 搜尋小工具
 │   │   │       ├── task.component.ts          # 任務小工具
-│   │   │       └── user.component.ts           # 用戶小工具
+│   │   │       ├── user.component.ts           # 用戶小工具
+│   │   │       └── routes.ts                   # 小工具路由配置
 │   │   ├── blank/                              # 空白版面 (現有)
 │   │   │   ├── blank.component.ts              # 空白版面元件
 │   │   │   └── README.md                       # 空白版面說明
