@@ -27,7 +27,7 @@ export function getFirebaseConfig() {
  */
 export function getFirebaseAppCheckConfig() {
   return {
-    provider: '6LeBOusrAAAAAAveKbstwHfHbGKcY1wyvHA10c6s',
+    provider: '6LeGl-wrAAAAALTgTmQN5XbGLB2hVKhcySGyBIXI',
     isTokenAutoRefreshEnabled: true
   };
 }
