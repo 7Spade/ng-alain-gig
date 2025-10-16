@@ -25,7 +25,7 @@ import { zh_CN as zorroLang } from 'ng-zorro-antd/i18n';
 
 import { ICONS } from '../style-icons';
 import { ICONS_AUTO } from '../style-icons-auto';
-import { routes } from './routes/routes';
+import { routes } from './app.routes';
 import { firebaseProviders } from './core/infrastructure/firebase/firebase-providers';
 
 const defaultLang: AlainProvideLang = {
