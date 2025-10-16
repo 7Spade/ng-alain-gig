@@ -1,5 +1,7 @@
 {
   "firestore": {
+    "database": "(default)",
+    "location": "us-central1",
     "rules": "firestore.rules",
     "indexes": "firestore.indexes.json"
   },
@@ -15,6 +17,17 @@
         "source": "**",
         "destination": "/index.html"
       }
+    ]
+  },
+  "apphosting": {
+    "backendId": "ng-gig",
+    "rootDir": "/",
+    "ignore": [
+      "node_modules",
+      ".git",
+      "firebase-debug.log",
+      "firebase-debug.*.log",
+      "functions"
     ]
   }
 }

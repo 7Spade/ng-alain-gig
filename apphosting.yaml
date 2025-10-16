@@ -45,18 +45,6 @@ env:
       - BUILD
       - RUNTIME
 
-  - variable: NEXT_PUBLIC_SUPABASE_URL
-    value: https://lfslbigukzjmkskxzkrw.supabase.co
-    availability:
-      - BUILD
-      - RUNTIME
-
-  - variable: NEXT_PUBLIC_SUPABASE_ANON_KEY
-    value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imxmc2xiaWd1a3pqbWtza3h6a3J3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTg5NjQwNTEsImV4cCI6MjA3NDU0MDA1MX0.JFWGVQGiuW0HpFXWDMaReTBgMzUbBFHE_KjP_RCSONM
-    availability:
-      - BUILD
-      - RUNTIME
-
   - variable: REDIS_URL
     value: redis://default:dd5vGsCR8xmarfTpcLJF0undQqIr0lM5@redis-11024.c299.asia-northeast1-1.gce.redns.redis-cloud.com:11024
     availability:
