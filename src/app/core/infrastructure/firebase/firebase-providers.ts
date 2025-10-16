@@ -16,7 +16,7 @@ import { getPerformance, providePerformance } from '@angular/fire/performance';
 import { getStorage, provideStorage } from '@angular/fire/storage';
 import { getRemoteConfig, provideRemoteConfig } from '@angular/fire/remote-config';
 
-import { firebaseConfig, firebaseAppCheckConfig } from './firebase-config';
+import { getFirebaseConfig, getFirebaseAppCheckConfig } from './firebase-config';
 
 /**
  * Firebase 所有服務的 Providers 配置
@@ -24,17 +24,18 @@ import { firebaseConfig, firebaseAppCheckConfig } from './firebase-config';
  */
 export const firebaseProviders: Array<Provider | EnvironmentProviders> = [
   // 1. Firebase 應用程式初始化
-  provideFirebaseApp(() =>
-    initializeApp({
-      projectId: firebaseConfig.projectId,
-      appId: firebaseConfig.appId,
-      storageBucket: firebaseConfig.storageBucket,
-      apiKey: firebaseConfig.apiKey,
-      authDomain: firebaseConfig.authDomain,
-      messagingSenderId: firebaseConfig.messagingSenderId,
-      measurementId: firebaseConfig.measurementId
-    })
-  ),
+  provideFirebaseApp(() => {
+    const config = getFirebaseConfig(); // 🚨 延遲載入配置
+    return initializeApp({
+      projectId: config.projectId,
+      appId: config.appId,
+      storageBucket: config.storageBucket,
+      apiKey: config.apiKey,
+      authDomain: config.authDomain,
+      messagingSenderId: config.messagingSenderId,
+      measurementId: config.measurementId
+    });
+  }),
 
   // 2. Firebase 認證
   provideAuth_alias(() => getAuth()),
@@ -46,11 +47,11 @@ export const firebaseProviders: Array<Provider | EnvironmentProviders> = [
 
   // 4. Firebase App Check (安全驗證) - 絕對保護
   provideAppCheck(() => {
-    // 使用統一配置的 reCAPTCHA Enterprise site key
-    const provider = new ReCaptchaEnterpriseProvider(firebaseAppCheckConfig.provider);
+    const appCheckConfig = getFirebaseAppCheckConfig(); // 🚨 延遲載入配置
+    const provider = new ReCaptchaEnterpriseProvider(appCheckConfig.provider);
     return initializeAppCheck(getApp(), {
       provider,
-      isTokenAutoRefreshEnabled: firebaseAppCheckConfig.isTokenAutoRefreshEnabled
+      isTokenAutoRefreshEnabled: appCheckConfig.isTokenAutoRefreshEnabled
     });
   }),
 
