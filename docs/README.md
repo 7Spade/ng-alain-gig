@@ -150,11 +150,28 @@ src/
 │   │   │   │   └── audit.service.ts                    # 審計服務
 │   │   │   └── index.ts                                # 基礎設施模組匯出
 │   │   │
-│   │   └── shared/                             # 共享工具
-│   │       ├── utils/                                 # 工具函數
-│   │       ├── constants/                             # 常數定義
-│   │       ├── models/                                # 共享模型
-│   │       └── index.ts                               # 共享模組匯出
+│   │   ├── startup/                           # 應用啟動服務 ✨ (現有)
+│   │   │   ├── startup.service.ts                     # 啟動服務
+│   │   │   └── startup.service.spec.ts                # 啟動服務測試
+│   │   │
+│   │   ├── net/                               # 網路服務 ✨ (現有)
+│   │   │   ├── default.interceptor.ts                 # 預設攔截器
+│   │   │   ├── refresh-token.ts                       # Token 刷新
+│   │   │   ├── helper.ts                              # 網路輔助工具
+│   │   │   └── index.ts                               # 網路模組匯出
+│   │   │
+│   │   ├── i18n/                              # 國際化服務 ✨ (現有)
+│   │   │   ├── i18n.service.ts                        # 國際化服務
+│   │   │   └── i18n.service.spec.ts                   # 國際化服務測試
+│   │   │
+│   │   ├── shared/                             # 共享工具
+│   │   │   ├── utils/                                 # 工具函數
+│   │   │   ├── constants/                             # 常數定義
+│   │   │   ├── models/                                # 共享模型
+│   │   │   └── index.ts                               # 共享模組匯出
+│   │   │
+│   │   ├── start-page.guard.ts                 # 啟動頁面守衛 ✨ (現有)
+│   │   └── index.ts                            # 核心模組匯出
 │   │
 │   ├── features/                               # 功能模組
 │   │   │
