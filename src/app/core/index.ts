@@ -25,4 +25,4 @@ export * from './i18n/i18n.service';
 export * from './shared';
 
 // Start Page Guard - 啟動頁面守衛 ✨ (現有)
-export * from './start-page.guard';
+export * from './startup/guards/start-page.guard';
