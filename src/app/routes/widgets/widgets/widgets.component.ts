@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, inject }
 import { G2MiniAreaModule } from '@delon/chart/mini-area';
 import { G2MiniBarData, G2MiniBarModule } from '@delon/chart/mini-bar';
 import { _HttpClient } from '@delon/theme';
-import { SHARED_IMPORTS } from '@shared';
+import { SHARED_IMPORTS } from 'src/app/shared';
 import { NzCarouselModule } from 'ng-zorro-antd/carousel';
 import { NzMessageService } from 'ng-zorro-antd/message';
 

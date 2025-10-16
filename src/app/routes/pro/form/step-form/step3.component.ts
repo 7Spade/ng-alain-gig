@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { SHARED_IMPORTS } from '@shared';
+import { SHARED_IMPORTS } from 'src/app/shared';
 import { NzResultModule } from 'ng-zorro-antd/result';
 
 import { TransferService } from './transfer.service';

@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, ViewEncapsulation, inject } from '@angular/core';
 import { EllipsisComponent } from '@delon/abc/ellipsis';
 import { _HttpClient } from '@delon/theme';
-import { SHARED_IMPORTS } from '@shared';
+import { SHARED_IMPORTS } from 'src/app/shared';
 import { NzMessageService } from 'ng-zorro-antd/message';
 
 @Component({

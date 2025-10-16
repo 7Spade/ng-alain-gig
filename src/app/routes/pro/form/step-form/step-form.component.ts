@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, inject } from '@angular/core';
-import { SHARED_IMPORTS } from '@shared';
+import { SHARED_IMPORTS } from 'src/app/shared';
 import { NzStepsModule } from 'ng-zorro-antd/steps';
 
 import { Step1Component } from './step1.component';

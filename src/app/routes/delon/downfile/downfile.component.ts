@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { DownFileDirective } from '@delon/abc/down-file';
-import { SHARED_IMPORTS } from '@shared';
+import { SHARED_IMPORTS } from 'src/app/shared';
 
 @Component({
   selector: 'app-down-file',

@@ -1,7 +1,7 @@
 import { Component, ViewChild, inject } from '@angular/core';
 import { STColumn, STComponent } from '@delon/abc/st';
 import { ModalHelper } from '@delon/theme';
-import { SHARED_IMPORTS } from '@shared';
+import { SHARED_IMPORTS } from 'src/app/shared';
 import { NzMessageService } from 'ng-zorro-antd/message';
 
 import { ExtrasPoiEditComponent } from './edit/edit.component';

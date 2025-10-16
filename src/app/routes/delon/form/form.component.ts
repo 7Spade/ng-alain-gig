@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { STColumn } from '@delon/abc/st';
 import { SFSchema } from '@delon/form';
-import { SHARED_IMPORTS } from '@shared';
+import { SHARED_IMPORTS } from 'src/app/shared';
 
 @Component({
   selector: 'app-delon-form',

@@ -18,7 +18,7 @@ import { provideSFConfig } from '@delon/form';
 import { AlainProvideLang, provideAlain, zh_CN as delonLang } from '@delon/theme';
 import { AlainConfig } from '@delon/util/config';
 import { environment } from '@env/environment';
-import { CELL_WIDGETS, SF_WIDGETS, ST_WIDGETS } from '@shared';
+import { CELL_WIDGETS, SF_WIDGETS, ST_WIDGETS } from 'src/app/shared';
 import { zhCN as dateLang } from 'date-fns/locale';
 import { NzConfig, provideNzConfig } from 'ng-zorro-antd/core/config';
 import { zh_CN as zorroLang } from 'ng-zorro-antd/i18n';
@@ -85,9 +85,34 @@ if (environment.api?.refreshTokenEnabled && environment.api.refreshTokenType ===
 
 export const appConfig: ApplicationConfig = {
   providers: providers,
-  providers: [provideFirebaseApp(() => initializeApp({ projectId: "elite-chiller-455712-c4", appId: "1:7807661688:web:4bd4d17427e092281d1f8d", storageBucket: "elite-chiller-455712-c4.firebasestorage.app", apiKey: "AIzaSyCJ-eayGjJwBKsNIh3oEAG2GjbfTrvAMEI", authDomain: "elite-chiller-455712-c4.firebaseapp.com", messagingSenderId: "7807661688", measurementId: "G-VFCBRLWEQF", projectNumber: "7807661688", version: "2" })), provideAuth_alias(() => getAuth()), provideAnalytics(() => getAnalytics()), ScreenTrackingService, UserTrackingService, provideAppCheck(() => {
-  // TODO get a reCAPTCHA Enterprise here https://console.cloud.google.com/security/recaptcha?project=_
-  const provider = new ReCaptchaEnterpriseProvider(/* reCAPTCHA Enterprise site key */);
-  return initializeAppCheck(undefined, { provider, isTokenAutoRefreshEnabled: true });
-}), provideFirestore(() => getFirestore()), provideFunctions(() => getFunctions()), provideMessaging(() => getMessaging()), providePerformance(() => getPerformance()), provideStorage(() => getStorage()), provideRemoteConfig(() => getRemoteConfig())]
+  providers: [
+    provideFirebaseApp(() =>
+      initializeApp({
+        projectId: 'elite-chiller-455712-c4',
+        appId: '1:7807661688:web:4bd4d17427e092281d1f8d',
+        storageBucket: 'elite-chiller-455712-c4.firebasestorage.app',
+        apiKey: 'AIzaSyCJ-eayGjJwBKsNIh3oEAG2GjbfTrvAMEI',
+        authDomain: 'elite-chiller-455712-c4.firebaseapp.com',
+        messagingSenderId: '7807661688',
+        measurementId: 'G-VFCBRLWEQF',
+        projectNumber: '7807661688',
+        version: '2'
+      })
+    ),
+    provideAuth_alias(() => getAuth()),
+    provideAnalytics(() => getAnalytics()),
+    ScreenTrackingService,
+    UserTrackingService,
+    provideAppCheck(() => {
+      // TODO get a reCAPTCHA Enterprise here https://console.cloud.google.com/security/recaptcha?project=_
+      const provider = new ReCaptchaEnterpriseProvider(/* reCAPTCHA Enterprise site key */);
+      return initializeAppCheck(undefined, { provider, isTokenAutoRefreshEnabled: true });
+    }),
+    provideFirestore(() => getFirestore()),
+    provideFunctions(() => getFunctions()),
+    provideMessaging(() => getMessaging()),
+    providePerformance(() => getPerformance()),
+    provideStorage(() => getStorage()),
+    provideRemoteConfig(() => getRemoteConfig())
+  ]
 };

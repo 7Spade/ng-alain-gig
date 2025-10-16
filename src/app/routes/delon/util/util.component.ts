@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { copy } from '@delon/util/browser';
 import { format } from '@delon/util/format';
-import { SHARED_IMPORTS, yuan } from '@shared';
+import { SHARED_IMPORTS, yuan } from 'src/app/shared';
 import { NzMessageService } from 'ng-zorro-antd/message';
 
 @Component({

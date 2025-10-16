@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { Lodop, LodopService } from '@delon/abc/lodop';
-import { SHARED_IMPORTS } from '@shared';
+import { SHARED_IMPORTS } from 'src/app/shared';
 import { NzMessageService } from 'ng-zorro-antd/message';
 
 @Component({

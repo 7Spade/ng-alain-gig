@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { SFSchema } from '@delon/form';
-import { SHARED_IMPORTS } from '@shared';
+import { SHARED_IMPORTS } from 'src/app/shared';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzModalRef } from 'ng-zorro-antd/modal';
 

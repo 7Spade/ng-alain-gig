@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { STColumn } from '@delon/abc/st';
 import { XlsxService } from '@delon/abc/xlsx';
-import { SHARED_IMPORTS } from '@shared';
+import { SHARED_IMPORTS } from 'src/app/shared';
 import { NzSafeAny } from 'ng-zorro-antd/core/types';
 
 @Component({

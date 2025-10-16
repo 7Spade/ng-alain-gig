@@ -3,7 +3,7 @@ import { FullContentModule } from '@delon/abc/full-content';
 import { STColumn } from '@delon/abc/st';
 import { G2MiniBarComponent, G2MiniBarData } from '@delon/chart/mini-bar';
 import { _HttpClient } from '@delon/theme';
-import { SHARED_IMPORTS } from '@shared';
+import { SHARED_IMPORTS } from 'src/app/shared';
 import { NzMessageService } from 'ng-zorro-antd/message';
 
 @Component({

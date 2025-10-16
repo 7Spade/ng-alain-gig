@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { ACLService } from '@delon/acl';
 import { MenuService } from '@delon/theme';
-import { SHARED_IMPORTS } from '@shared';
+import { SHARED_IMPORTS } from 'src/app/shared';
 
 @Component({
   selector: 'app-acl',
