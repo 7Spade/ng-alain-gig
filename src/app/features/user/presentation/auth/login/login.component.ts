@@ -22,6 +22,7 @@ import { finalize } from 'rxjs';
   selector: 'passport-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.less'],
+  standalone: true,
   providers: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [

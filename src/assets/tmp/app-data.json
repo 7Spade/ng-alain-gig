@@ -60,6 +60,26 @@
           "text": "项目",
           "link": "/project/list",
           "icon": "anticon-appstore"
+        },
+        {
+          "text": "组织",
+          "link": "/organization",
+          "icon": "anticon-team"
+        },
+        {
+          "text": "社交",
+          "link": "/social",
+          "icon": "anticon-share-alt"
+        },
+        {
+          "text": "成就",
+          "link": "/achievement",
+          "icon": "anticon-trophy"
+        },
+        {
+          "text": "通知",
+          "link": "/notification",
+          "icon": "anticon-bell"
         }
       ]
     },
