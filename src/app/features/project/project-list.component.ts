@@ -17,11 +17,7 @@ type ProjectListItem = {
   template: `
     <section>
       <h3 class="mb-sm">Projects</h3>
-      <nz-table
-        [nzData]="projects()"
-        [nzLoading]="loading()"
-        [nzFrontPagination]="false"
-      >
+      <nz-table [nzData]="projects()" [nzLoading]="loading()" [nzFrontPagination]="false">
         <thead>
           <tr>
             <th>Name</th>
@@ -66,5 +62,3 @@ export class ProjectListComponent {
     console.log('view', id);
   }
 }
-
-

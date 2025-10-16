@@ -55,6 +55,11 @@
           "link": "/widgets",
           "icon": "anticon-appstore",
           "badge": 2
+        },
+        {
+          "text": "项目",
+          "link": "/project/list",
+          "icon": "anticon-appstore"
         }
       ]
     },

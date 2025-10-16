@@ -13,6 +13,6 @@ export const firebaseConfig = environment['firebase'];
  */
 export const firebaseAppCheckConfig = {
   // TODO get a reCAPTCHA Enterprise here https://console.cloud.google.com/security/recaptcha?project=_
-  provider: 'ReCaptchaEnterpriseProvider', // 需要實際的 reCAPTCHA Enterprise site key
+  provider: '6LeBOusrAAAAAAveKbstwHfHbGKcY1wyvHA10c6s', // 需要實際的 reCAPTCHA Enterprise site key
   isTokenAutoRefreshEnabled: true
 };

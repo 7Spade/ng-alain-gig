@@ -13,6 +13,7 @@ import {
   onIdTokenChanged,
   User
 } from '@angular/fire/auth';
+import { Firestore, doc, getDoc, setDoc, updateDoc, serverTimestamp } from '@angular/fire/firestore';
 import { DA_SERVICE_TOKEN } from '@delon/auth';
 import { ACLService } from '@delon/acl';
 import { Observable, from, BehaviorSubject } from 'rxjs';
@@ -25,11 +26,31 @@ export interface FirebaseUser {
   photoURL: string | null;
 }
 
+export interface UserProfile {
+  uid: string;
+  email: string;
+  displayName?: string;
+  photoURL?: string;
+  emailVerified: boolean;
+  createdAt: any;
+  updatedAt: any;
+  lastLoginAt?: any;
+  organizations: Record<string, { role: string; joinedAt: any }>;
+  projects: Record<string, { role: string; assignedAt: any }>;
+  preferences: {
+    language: string;
+    timezone: string;
+    notifications: { email: boolean; push: boolean };
+  };
+  status: 'active' | 'suspended' | 'pending';
+}
+
 @Injectable({
   providedIn: 'root'
 })
 export class FirebaseAuthService {
   private auth = inject(Auth);
+  private firestore = inject(Firestore);
   private tokenService = inject(DA_SERVICE_TOKEN);
   private aclService = inject(ACLService);
 
@@ -120,6 +141,9 @@ export class FirebaseAuthService {
     try {
       const token = await user.getIdToken();
 
+      // 確保 Firestore 用戶檔案存在並更新
+      await this.ensureUserProfile(user);
+
       // 設定 @delon/auth token
       this.tokenService.set({
         token,
@@ -131,9 +155,99 @@ export class FirebaseAuthService {
       });
 
       // 設定 ACL 權限
-      this.setUserACL(user);
+      await this.setUserACLFromProfile(user);
     } catch (error) {
       console.error('Sync with Delon Auth error:', error);
+    }
+  }
+
+  /**
+   * 確保 Firestore 用戶檔案存在，不存在則建立
+   */
+  private async ensureUserProfile(user: User): Promise<void> {
+    const userDocRef = doc(this.firestore, 'users', user.uid);
+    const userDoc = await getDoc(userDocRef);
+
+    if (!userDoc.exists()) {
+      // 建立新用戶檔案
+      const newProfile: UserProfile = {
+        uid: user.uid,
+        email: user.email || '',
+        displayName: user.displayName || undefined,
+        photoURL: user.photoURL || undefined,
+        emailVerified: user.emailVerified,
+        createdAt: serverTimestamp(),
+        updatedAt: serverTimestamp(),
+        lastLoginAt: serverTimestamp(),
+        organizations: {},
+        projects: {},
+        preferences: {
+          language: 'zh-TW',
+          timezone: 'Asia/Taipei',
+          notifications: { email: true, push: true }
+        },
+        status: 'active'
+      };
+      await setDoc(userDocRef, newProfile);
+    } else {
+      // 更新最後登入時間
+      await updateDoc(userDocRef, {
+        lastLoginAt: serverTimestamp(),
+        updatedAt: serverTimestamp()
+      });
+    }
+  }
+
+  /**
+   * 從 Firestore 用戶檔案設定 ACL 權限
+   */
+  private async setUserACLFromProfile(user: User): Promise<void> {
+    try {
+      const userDocRef = doc(this.firestore, 'users', user.uid);
+      const userDoc = await getDoc(userDocRef);
+
+      if (userDoc.exists()) {
+        const profile = userDoc.data() as UserProfile;
+
+        // 根據組織角色設定權限
+        const roles: string[] = [];
+        const abilities: string[] = [];
+
+        // 基本權限
+        if (user.emailVerified) {
+          roles.push('verified-user');
+          abilities.push('read', 'write');
+        } else {
+          roles.push('unverified-user');
+          abilities.push('read');
+        }
+
+        // 組織權限
+        Object.values(profile.organizations || {}).forEach(org => {
+          roles.push(`org-${org.role}`);
+          if (org.role === 'owner' || org.role === 'admin') {
+            abilities.push('admin', 'manage-users');
+          }
+        });
+
+        // 專案權限
+        Object.values(profile.projects || {}).forEach(project => {
+          roles.push(`project-${project.role}`);
+          if (project.role === 'manager') {
+            abilities.push('manage-projects');
+          }
+        });
+
+        this.aclService.setRole(roles);
+        this.aclService.setAbility(abilities);
+      } else {
+        // 預設權限
+        this.setUserACL(user);
+      }
+    } catch (error) {
+      console.error('Set ACL from profile error:', error);
+      // 回退到基本權限
+      this.setUserACL(user);
     }
   }
 
