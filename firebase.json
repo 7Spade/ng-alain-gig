@@ -5,8 +5,19 @@
     "rules": "firestore.rules",
     "indexes": "firestore.indexes.json"
   },
+  "apphosting": {
+    "backendId": "ng-gig",
+    "rootDir": "/",
+    "ignore": [
+      "node_modules",
+      ".git",
+      "firebase-debug.log",
+      "firebase-debug.*.log",
+      "functions"
+    ]
+  },
   "hosting": {
-    "public": "dist/ng-alain/browser",
+    "public": "public",
     "ignore": [
       "firebase.json",
       "**/.*",
@@ -19,42 +30,8 @@
       }
     ]
   },
-  "apphosting": {
-    "backendId": "ng-gig",
-    "rootDir": "/",
-    "ignore": [
-      "node_modules",
-      ".git",
-      "firebase-debug.log",
-      "firebase-debug.*.log",
-      "functions"
-    ]
-  },
   "storage": {
     "rules": "storage.rules"
-  },
-  "emulators": {
-    "apphosting": {
-      "port": 5002,
-      "rootDirectory": "./",
-      "startCommand": "yarn run dev"
-    },
-    "auth": {
-      "port": 9099
-    },
-    "firestore": {
-      "port": 8080
-    },
-    "hosting": {
-      "port": 5000
-    },
-    "storage": {
-      "port": 9199
-    },
-    "ui": {
-      "enabled": true
-    },
-    "singleProjectMode": true
   },
   "remoteconfig": {
     "template": "remoteconfig.template.json"
