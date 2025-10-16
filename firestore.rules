@@ -1,0 +1,20 @@
+rules_version = '2';
+
+/**
+ * Firestore Security Rules - 開發環境全開模式
+ *
+ * @description
+ * 此規則允許所有讀寫操作，適用於開發和測試環境
+ * 
+ * ⚠️ 警告：此規則不適用於生產環境！
+ * 生產環境應使用適當的安全規則來保護資料
+ */
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // 允許所有讀寫操作
+    match /{document=**} {
+      allow read, write: if true;
+    }
+  }
+}
+
