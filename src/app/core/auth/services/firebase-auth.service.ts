@@ -4,7 +4,7 @@
  */
 
 import { Injectable, inject } from '@angular/core';
-import { Auth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, onAuthStateChanged, User } from '@angular/fire/auth';
+import { Auth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, onIdTokenChanged, User } from '@angular/fire/auth';
 import { DA_SERVICE_TOKEN } from '@delon/auth';
 import { ACLService } from '@delon/acl';
 import { Observable, from, BehaviorSubject } from 'rxjs';
@@ -29,8 +29,8 @@ export class FirebaseAuthService {
   public user$ = this.userSubject.asObservable();
 
   constructor() {
-    // 監聽 Firebase Auth 狀態變化
-    onAuthStateChanged(this.auth, user => {
+    // 監聽 Firebase ID Token 變化（包含登入、登出與 token 旋轉）
+    onIdTokenChanged(this.auth, user => {
       if (user) {
         const firebaseUser: FirebaseUser = {
           uid: user.uid,

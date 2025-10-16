@@ -70,10 +70,6 @@
 </form>
 <div class="other">
   {{ 'app.login.sign-in-with' | i18n }}
-  <i nz-tooltip nzTooltipTitle="in fact Auth0 via window" (click)="open('auth0', 'window')" nz-icon
-    nzType="alipay-circle" class="icon"></i>
-  <i nz-tooltip nzTooltipTitle="in fact Github via redirect" (click)="open('github')" nz-icon nzType="taobao-circle"
-    class="icon"></i>
-  <i (click)="open('weibo', 'window')" nz-icon nzType="weibo-circle" class="icon"></i>
+  <button nz-button nzType="default" nzSize="large" (click)="openGoogle()">Google</button>
   <a class="register" routerLink="/passport/register">{{ 'app.login.signup' | i18n }}</a>
 </div>

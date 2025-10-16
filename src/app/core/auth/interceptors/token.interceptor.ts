@@ -17,7 +17,7 @@ function reAttachToken(injector: Injector, req: HttpRequest<any>): HttpRequest<a
   const token = injector.get(DA_SERVICE_TOKEN).get()?.token;
   return req.clone({
     setHeaders: {
-      token: `Bearer ${token}`
+      Authorization: `Bearer ${token}`
     }
   });
 }

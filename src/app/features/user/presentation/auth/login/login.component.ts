@@ -4,8 +4,9 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { StartupService } from '@core';
 import { ReuseTabService } from '@delon/abc/reuse-tab';
-import { ALLOW_ANONYMOUS, DA_SERVICE_TOKEN, SocialOpenType, SocialService } from '@delon/auth';
+import { ALLOW_ANONYMOUS, DA_SERVICE_TOKEN } from '@delon/auth';
 import { I18nPipe, SettingsService, _HttpClient } from '@delon/theme';
+import { Auth, GoogleAuthProvider, signInWithRedirect } from '@angular/fire/auth';
 import { environment } from '@env/environment';
 import { NzAlertModule } from 'ng-zorro-antd/alert';
 import { NzButtonModule } from 'ng-zorro-antd/button';
@@ -21,7 +22,7 @@ import { finalize } from 'rxjs';
   selector: 'passport-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.less'],
-  providers: [SocialService],
+  providers: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     RouterLink,
@@ -40,12 +41,12 @@ import { finalize } from 'rxjs';
 export class UserLoginComponent implements OnDestroy {
   private readonly router = inject(Router);
   private readonly settingsService = inject(SettingsService);
-  private readonly socialService = inject(SocialService);
   private readonly reuseTabService = inject(ReuseTabService, { optional: true });
   private readonly tokenService = inject(DA_SERVICE_TOKEN);
   private readonly startupSrv = inject(StartupService);
   private readonly http = inject(_HttpClient);
   private readonly cdr = inject(ChangeDetectorRef);
+  private readonly auth = inject(Auth);
 
   form = inject(FormBuilder).nonNullable.group({
     userName: ['', [Validators.required, Validators.pattern(/^(admin|user)$/)]],
@@ -149,43 +150,9 @@ export class UserLoginComponent implements OnDestroy {
       });
   }
 
-  open(type: string, openType: SocialOpenType = 'href'): void {
-    let url = ``;
-    let callback = ``;
-    if (environment.production) {
-      callback = `https://ng-alain.github.io/ng-alain/#/passport/callback/${type}`;
-    } else {
-      callback = `http://localhost:4200/#/passport/callback/${type}`;
-    }
-    switch (type) {
-      case 'auth0':
-        url = `//cipchk.auth0.com/login?client=8gcNydIDzGBYxzqV0Vm1CX_RXH-wsWo5&redirect_uri=${decodeURIComponent(callback)}`;
-        break;
-      case 'github':
-        url = `//github.com/login/oauth/authorize?client_id=9d6baae4b04a23fcafa2&response_type=code&redirect_uri=${decodeURIComponent(
-          callback
-        )}`;
-        break;
-      case 'weibo':
-        url = `https://api.weibo.com/oauth2/authorize?client_id=1239507802&response_type=code&redirect_uri=${decodeURIComponent(callback)}`;
-        break;
-    }
-    if (openType === 'window') {
-      this.socialService
-        .login(url, '/', {
-          type: 'window'
-        })
-        .subscribe(res => {
-          if (res) {
-            this.settingsService.setUser(res);
-            this.router.navigateByUrl('/');
-          }
-        });
-    } else {
-      this.socialService.login(url, '/', {
-        type: 'href'
-      });
-    }
+  openGoogle(): void {
+    const provider = new GoogleAuthProvider();
+    signInWithRedirect(this.auth, provider);
   }
 
   ngOnDestroy(): void {
