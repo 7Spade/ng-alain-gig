@@ -150,6 +150,12 @@ src/
 │   │   │   │   └── audit.service.ts                    # 審計服務
 │   │   │   └── index.ts                                # 基礎設施模組匯出
 │   │   │
+│   │   ├── startup/                           # 應用啟動服務 ✨ (現有)
+│   │   │   ├── startup.service.ts                     # 啟動服務
+│   │   │   ├── guards/
+│   │   │   │   └── start-page.guard.ts                # 啟動頁面守衛
+│   │   │   └── index.ts                               # 啟動模組匯出
+│   │   │
 │   │   ├── i18n/                              # 國際化服務 ✨ (現有)
 │   │   │   ├── i18n.service.ts                        # 國際化服務
 │   │   │   └── i18n.service.spec.ts                   # 國際化服務測試
