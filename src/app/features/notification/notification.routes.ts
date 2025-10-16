@@ -14,26 +14,31 @@ export const notificationRoutes: Routes = [
   {
     path: 'center',
     // TODO: 建立 NotificationCenterPage 元件
-    loadComponent: () => import('../../routes/dashboard/workplace/workplace.component').then(m => m.DashboardWorkplaceComponent)
+    loadComponent: () =>
+      import('../user/presentation/pages/dashboard/workplace/workplace.component').then(m => m.DashboardWorkplaceComponent)
   },
   {
     path: 'settings',
     // TODO: 建立 NotificationSettingsPage 元件
-    loadComponent: () => import('../../routes/dashboard/workplace/workplace.component').then(m => m.DashboardWorkplaceComponent)
+    loadComponent: () =>
+      import('../user/presentation/pages/dashboard/workplace/workplace.component').then(m => m.DashboardWorkplaceComponent)
   },
   {
     path: 'history',
     // TODO: 建立 NotificationHistoryPage 元件
-    loadComponent: () => import('../../routes/dashboard/workplace/workplace.component').then(m => m.DashboardWorkplaceComponent)
+    loadComponent: () =>
+      import('../user/presentation/pages/dashboard/workplace/workplace.component').then(m => m.DashboardWorkplaceComponent)
   },
   {
     path: 'display',
     // TODO: 建立通知顯示元件
-    loadComponent: () => import('../../routes/dashboard/workplace/workplace.component').then(m => m.DashboardWorkplaceComponent)
+    loadComponent: () =>
+      import('../user/presentation/pages/dashboard/workplace/workplace.component').then(m => m.DashboardWorkplaceComponent)
   },
   {
     path: 'settings',
     // TODO: 建立通知設定元件
-    loadComponent: () => import('../../routes/dashboard/workplace/workplace.component').then(m => m.DashboardWorkplaceComponent)
+    loadComponent: () =>
+      import('../user/presentation/pages/dashboard/workplace/workplace.component').then(m => m.DashboardWorkplaceComponent)
   }
 ];

@@ -5,7 +5,7 @@ _cli-tpl
 .angular
 .yarn
 dist
-tmp
+
 out-tsc
 bazel-out
 delon-builds

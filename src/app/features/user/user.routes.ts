@@ -14,21 +14,21 @@ export const userRoutes: Routes = [
   {
     path: 'profile',
     // TODO: 建立 UserProfilePage 元件
-    loadComponent: () => import('../../routes/dashboard/workplace/workplace.component').then(m => m.DashboardWorkplaceComponent)
+    loadComponent: () => import('./presentation/pages/dashboard/workplace/workplace.component').then(m => m.DashboardWorkplaceComponent)
   },
   {
     path: 'settings',
     // TODO: 建立 UserSettingsPage 元件
-    loadComponent: () => import('../../routes/dashboard/workplace/workplace.component').then(m => m.DashboardWorkplaceComponent)
+    loadComponent: () => import('./presentation/pages/dashboard/workplace/workplace.component').then(m => m.DashboardWorkplaceComponent)
   },
   {
     path: 'dashboard',
     // TODO: 建立 UserDashboardPage 元件
-    loadComponent: () => import('../../routes/dashboard/workplace/workplace.component').then(m => m.DashboardWorkplaceComponent)
+    loadComponent: () => import('./presentation/pages/dashboard/workplace/workplace.component').then(m => m.DashboardWorkplaceComponent)
   },
   {
     path: 'certificates',
     // TODO: 建立證照管理元件
-    loadComponent: () => import('../../routes/dashboard/workplace/workplace.component').then(m => m.DashboardWorkplaceComponent)
+    loadComponent: () => import('./presentation/pages/dashboard/workplace/workplace.component').then(m => m.DashboardWorkplaceComponent)
   }
 ];

@@ -14,26 +14,31 @@ export const achievementRoutes: Routes = [
   {
     path: 'dashboard',
     // TODO: 建立 AchievementDashboardPage 元件
-    loadComponent: () => import('../../routes/dashboard/workplace/workplace.component').then(m => m.DashboardWorkplaceComponent)
+    loadComponent: () =>
+      import('../user/presentation/pages/dashboard/workplace/workplace.component').then(m => m.DashboardWorkplaceComponent)
   },
   {
     path: 'leaderboard',
     // TODO: 建立 LeaderboardPage 元件
-    loadComponent: () => import('../../routes/dashboard/workplace/workplace.component').then(m => m.DashboardWorkplaceComponent)
+    loadComponent: () =>
+      import('../user/presentation/pages/dashboard/workplace/workplace.component').then(m => m.DashboardWorkplaceComponent)
   },
   {
     path: 'management',
     // TODO: 建立 AchievementManagementPage 元件
-    loadComponent: () => import('../../routes/dashboard/workplace/workplace.component').then(m => m.DashboardWorkplaceComponent)
+    loadComponent: () =>
+      import('../user/presentation/pages/dashboard/workplace/workplace.component').then(m => m.DashboardWorkplaceComponent)
   },
   {
     path: 'display',
     // TODO: 建立成就顯示元件
-    loadComponent: () => import('../../routes/dashboard/workplace/workplace.component').then(m => m.DashboardWorkplaceComponent)
+    loadComponent: () =>
+      import('../user/presentation/pages/dashboard/workplace/workplace.component').then(m => m.DashboardWorkplaceComponent)
   },
   {
     path: 'leaderboard',
     // TODO: 建立排行榜元件
-    loadComponent: () => import('../../routes/dashboard/workplace/workplace.component').then(m => m.DashboardWorkplaceComponent)
+    loadComponent: () =>
+      import('../user/presentation/pages/dashboard/workplace/workplace.component').then(m => m.DashboardWorkplaceComponent)
   }
 ];

@@ -49,6 +49,6 @@ export class ProListLayoutComponent implements OnInit {
   }
 
   to(item: { key: string }): void {
-    this.router.navigateByUrl(`/pro/list/${item.key}`);
+    this.router.navigateByUrl(`/lists/${item.key}`);
   }
 }

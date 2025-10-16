@@ -14,36 +14,43 @@ export const projectRoutes: Routes = [
   {
     path: 'list',
     // TODO: 建立 ProjectListPage 元件
-    loadComponent: () => import('../../routes/dashboard/workplace/workplace.component').then(m => m.DashboardWorkplaceComponent)
+    loadComponent: () =>
+      import('../user/presentation/pages/dashboard/workplace/workplace.component').then(m => m.DashboardWorkplaceComponent)
   },
   {
     path: 'detail/:id',
     // TODO: 建立 ProjectDetailPage 元件
-    loadComponent: () => import('../../routes/dashboard/workplace/workplace.component').then(m => m.DashboardWorkplaceComponent)
+    loadComponent: () =>
+      import('../user/presentation/pages/dashboard/workplace/workplace.component').then(m => m.DashboardWorkplaceComponent)
   },
   {
     path: 'dashboard/:id',
     // TODO: 建立 ProjectDashboardPage 元件
-    loadComponent: () => import('../../routes/dashboard/workplace/workplace.component').then(m => m.DashboardWorkplaceComponent)
+    loadComponent: () =>
+      import('../user/presentation/pages/dashboard/workplace/workplace.component').then(m => m.DashboardWorkplaceComponent)
   },
   {
     path: 'reports/:id',
     // TODO: 建立 ProjectReportsPage 元件
-    loadComponent: () => import('../../routes/dashboard/workplace/workplace.component').then(m => m.DashboardWorkplaceComponent)
+    loadComponent: () =>
+      import('../user/presentation/pages/dashboard/workplace/workplace.component').then(m => m.DashboardWorkplaceComponent)
   },
   {
     path: 'tasks',
     // TODO: 建立任務管理元件
-    loadComponent: () => import('../../routes/dashboard/workplace/workplace.component').then(m => m.DashboardWorkplaceComponent)
+    loadComponent: () =>
+      import('../user/presentation/pages/dashboard/workplace/workplace.component').then(m => m.DashboardWorkplaceComponent)
   },
   {
     path: 'documents',
     // TODO: 建立文件管理元件
-    loadComponent: () => import('../../routes/dashboard/workplace/workplace.component').then(m => m.DashboardWorkplaceComponent)
+    loadComponent: () =>
+      import('../user/presentation/pages/dashboard/workplace/workplace.component').then(m => m.DashboardWorkplaceComponent)
   },
   {
     path: 'cost',
     // TODO: 建立成本管理元件
-    loadComponent: () => import('../../routes/dashboard/workplace/workplace.component').then(m => m.DashboardWorkplaceComponent)
+    loadComponent: () =>
+      import('../user/presentation/pages/dashboard/workplace/workplace.component').then(m => m.DashboardWorkplaceComponent)
   }
 ];

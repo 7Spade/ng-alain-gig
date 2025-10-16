@@ -162,23 +162,23 @@
         {
           "text": "Form Page",
           "i18n": "menu.form",
-          "link": "/pro/form",
+          "link": "/forms",
           "icon": "anticon-edit",
           "children": [
             {
               "text": "Basic Form",
-              "link": "/pro/form/basic-form",
+              "link": "/forms/basic-form",
               "i18n": "menu.form.basicform",
               "shortcut": true
             },
             {
               "text": "Step Form",
-              "link": "/pro/form/step-form",
+              "link": "/forms/step-form",
               "i18n": "menu.form.stepform"
             },
             {
               "text": "Advanced Form",
-              "link": "/pro/form/advanced-form",
+              "link": "/forms/advanced-form",
               "i18n": "menu.form.advancedform"
             }
           ]
@@ -190,18 +190,18 @@
           "children": [
             {
               "text": "Table List",
-              "link": "/pro/list/table-list",
+              "link": "/lists/table-list",
               "i18n": "menu.list.searchtable",
               "shortcut": true
             },
             {
               "text": "Basic List",
-              "link": "/pro/list/basic-list",
+              "link": "/lists/basic-list",
               "i18n": "menu.list.basiclist"
             },
             {
               "text": "Card List",
-              "link": "/pro/list/card-list",
+              "link": "/lists/card-list",
               "i18n": "menu.list.cardlist"
             },
             {
@@ -209,16 +209,16 @@
               "i18n": "menu.list.searchlist",
               "children": [
                 {
-                  "link": "/pro/list/articles",
+                  "link": "/lists/articles",
                   "i18n": "menu.list.searchlist.articles"
                 },
                 {
-                  "link": "/pro/list/projects",
+                  "link": "/lists/projects",
                   "i18n": "menu.list.searchlist.projects",
                   "shortcut": true
                 },
                 {
-                  "link": "/pro/list/applications",
+                  "link": "/lists/applications",
                   "i18n": "menu.list.searchlist.applications"
                 }
               ]
@@ -232,12 +232,12 @@
           "children": [
             {
               "text": "Basic",
-              "link": "/pro/profile/basic",
+              "link": "/profiles/basic",
               "i18n": "menu.profile.basic"
             },
             {
               "text": "Advanced",
-              "link": "/pro/profile/advanced",
+              "link": "/profiles/advanced",
               "i18n": "menu.profile.advanced",
               "shortcut": true
             }
@@ -250,12 +250,12 @@
           "children": [
             {
               "text": "Success",
-              "link": "/pro/result/success",
+              "link": "/results/success",
               "i18n": "menu.result.success"
             },
             {
               "text": "Fail",
-              "link": "/pro/result/fail",
+              "link": "/results/fail",
               "i18n": "menu.result.fail"
             }
           ]
@@ -293,12 +293,12 @@
           "children": [
             {
               "text": "center",
-              "link": "/pro/account/center",
+              "link": "/account/center",
               "i18n": "menu.account.center"
             },
             {
               "text": "settings",
-              "link": "/pro/account/settings",
+              "link": "/account/settings",
               "i18n": "menu.account.settings"
             }
           ]

@@ -14,26 +14,31 @@ export const socialRoutes: Routes = [
   {
     path: 'dashboard',
     // TODO: 建立 SocialDashboardPage 元件
-    loadComponent: () => import('../../routes/dashboard/workplace/workplace.component').then(m => m.DashboardWorkplaceComponent)
+    loadComponent: () =>
+      import('../user/presentation/pages/dashboard/workplace/workplace.component').then(m => m.DashboardWorkplaceComponent)
   },
   {
     path: 'discovery',
     // TODO: 建立 UserDiscoveryPage 元件
-    loadComponent: () => import('../../routes/dashboard/workplace/workplace.component').then(m => m.DashboardWorkplaceComponent)
+    loadComponent: () =>
+      import('../user/presentation/pages/dashboard/workplace/workplace.component').then(m => m.DashboardWorkplaceComponent)
   },
   {
     path: 'network',
     // TODO: 建立 SocialNetworkPage 元件
-    loadComponent: () => import('../../routes/dashboard/workplace/workplace.component').then(m => m.DashboardWorkplaceComponent)
+    loadComponent: () =>
+      import('../user/presentation/pages/dashboard/workplace/workplace.component').then(m => m.DashboardWorkplaceComponent)
   },
   {
     path: 'following',
     // TODO: 建立追蹤管理元件
-    loadComponent: () => import('../../routes/dashboard/workplace/workplace.component').then(m => m.DashboardWorkplaceComponent)
+    loadComponent: () =>
+      import('../user/presentation/pages/dashboard/workplace/workplace.component').then(m => m.DashboardWorkplaceComponent)
   },
   {
     path: 'discovery',
     // TODO: 建立用戶發現元件
-    loadComponent: () => import('../../routes/dashboard/workplace/workplace.component').then(m => m.DashboardWorkplaceComponent)
+    loadComponent: () =>
+      import('../user/presentation/pages/dashboard/workplace/workplace.component').then(m => m.DashboardWorkplaceComponent)
   }
 ];

@@ -57,7 +57,7 @@ export class ProAccountCenterComponent implements OnInit, OnDestroy {
   }
 
   to(item: { key: string }): void {
-    this.router.navigateByUrl(`/pro/account/center/${item.key}`);
+    this.router.navigateByUrl(`/account/center/${item.key}`);
   }
   tagShowIpt(): void {
     this.taging = true;

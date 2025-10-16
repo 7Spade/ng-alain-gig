@@ -16,11 +16,11 @@ import { NzMenuModule } from 'ng-zorro-antd/menu';
     </div>
     <nz-dropdown-menu #userMenu="nzDropdownMenu">
       <div nz-menu class="width-sm">
-        <div nz-menu-item routerLink="/pro/account/center">
+        <div nz-menu-item routerLink="/account/center">
           <i nz-icon nzType="user" class="mr-sm"></i>
           {{ 'menu.account.center' | i18n }}
         </div>
-        <div nz-menu-item routerLink="/pro/account/settings">
+        <div nz-menu-item routerLink="/account/settings">
           <i nz-icon nzType="setting" class="mr-sm"></i>
           {{ 'menu.account.settings' | i18n }}
         </div>
