@@ -949,27 +949,26 @@ src/
 │   │   └── index.ts
 │   │
 │   ├── layout/                                 # 版面配置 ✨
-│   │   ├── components/
-│   │   │   ├── header/
-│   │   │   │   ├── header.component.ts                    # 頁首元件
-│   │   │   │   ├── user-menu.component.ts                 # 用戶選單元件
-│   │   │   │   ├── notification-bell.component.ts         # 通知鈴鐺元件
-│   │   │   │   └── organization-switcher.component.ts     # 組織切換器元件
-│   │   │   ├── sidebar/
-│   │   │   │   ├── sidebar.component.ts                   # 側邊欄元件
-│   │   │   │   ├── navigation-menu.component.ts           # 導航選單元件
-│   │   │   │   └── menu-item.component.ts                 # 選單項目元件
-│   │   │   ├── footer/
-│   │   │   │   └── footer.component.ts                    # 頁尾元件
-│   │   │   └── layout/
-│   │   │       ├── main-layout.component.ts               # 主版面元件
-│   │   │       ├── auth-layout.component.ts               # 認證版面元件
-│   │   │       └── fullscreen-layout.component.ts         # 全螢幕版面元件
-│   │   ├── services/
-│   │   │   ├── layout.service.ts                          # 版面服務
-│   │   │   ├── navigation.service.ts                      # 導航服務
-│   │   │   └── sidebar.service.ts                         # 側邊欄服務
-│   │   └── index.ts                                        # 版面模組匯出
+│   │   ├── basic/                              # 基本版面 (現有)
+│   │   │   ├── basic.component.ts              # 基本版面元件
+│   │   │   ├── README.md                       # 基本版面說明
+│   │   │   └── widgets/                        # 版面小工具
+│   │   │       ├── clear-storage.component.ts  # 清除儲存小工具
+│   │   │       ├── fullscreen.component.ts     # 全螢幕小工具
+│   │   │       ├── i18n.component.ts           # 國際化小工具
+│   │   │       ├── icon.component.ts           # 圖示小工具
+│   │   │       ├── notify.component.ts        # 通知小工具
+│   │   │       ├── rtl.component.ts           # RTL 小工具
+│   │   │       ├── search.component.ts        # 搜尋小工具
+│   │   │       ├── task.component.ts          # 任務小工具
+│   │   │       └── user.component.ts           # 用戶小工具
+│   │   ├── blank/                              # 空白版面 (現有)
+│   │   │   ├── blank.component.ts              # 空白版面元件
+│   │   │   └── README.md                       # 空白版面說明
+│   │   ├── passport/                           # 認證版面 (現有)
+│   │   │   ├── passport.component.ts           # 認證版面元件
+│   │   │   └── passport.component.less         # 認證版面樣式
+│   │   └── index.ts                            # 版面模組匯出
 │   │
 │   └── main.ts                                 # 應用程式入口
 │
@@ -1016,13 +1015,17 @@ src/
 │   └── index.d.ts
 │
 ├── styles/                                     # 全域樣式  ✨
+│   ├── index.less
 │   ├── styles.less
 │   ├── theme.less
 │   └── variables.less
 │
-├── index.html                                  # HTML 入口
-├── main.ts                                     # TypeScript 入口
-└── style-icons.ts                              # 圖示定義
+├── index.html                                  # HTML 入口檔案 - 應用程式根模板，包含預載入動畫與基本 meta 標籤
+├── main.ts                                     # TypeScript 入口檔案 - Angular 應用程式啟動點，使用 bootstrapApplication() 現代化啟動方式
+├── style-icons.ts                              # 自訂圖示定義檔案 - 定義專案中使用的自訂 Ant Design 圖示集合
+├── style-icons-auto.ts                         # 自動生成圖示檔案 - 由 ng-alain CLI 自動維護的圖示集合，包含 50+ 常用圖示
+├── styles.less                                 # 全域樣式入口檔案 - 統一樣式系統入口，匯入 @delon 主題與元件樣式
+└── typings.d.ts                                # 全域型別定義檔案 - 為缺少 TypeScript 型別定義的第三方函式庫提供型別聲明
 
 # 根目錄檔案
 ├── angular.json                                # Angular 配置
