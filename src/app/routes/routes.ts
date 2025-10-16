@@ -64,7 +64,7 @@ export const routes: Routes = [
     children: [{ path: '', loadChildren: () => import('./data-v/routes').then(m => m.routes) }]
   },
   // passport
-  { path: '', loadChildren: () => import('./passport/routes').then(m => m.routes) },
+  { path: '', loadChildren: () => import('../features/user/presentation/auth/routes').then(m => m.routes) },
   { path: 'exception', loadChildren: () => import('./exception/routes').then(m => m.routes) },
   { path: '**', redirectTo: 'exception/404' }
 ];
