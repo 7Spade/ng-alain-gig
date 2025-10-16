@@ -70,6 +70,8 @@
 </form>
 <div class="other">
   {{ 'app.login.sign-in-with' | i18n }}
-  <button nz-button nzType="default" nzSize="large" (click)="openGoogle()">Google</button>
+  <button type="button" class="social-btn social-btn-google" nz-tooltip nzTooltipTitle="使用 Google 登入" (click)="openGoogle()">
+    <span class="social-icon google"></span>
+  </button>
   <a class="register" routerLink="/passport/register">{{ 'app.login.signup' | i18n }}</a>
 </div>

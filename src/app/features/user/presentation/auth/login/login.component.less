@@ -43,6 +43,41 @@
         vertical-align: middle;
       }
 
+      .social-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        border: 1px solid rgb(0 0 0 / 12%);
+        margin-left: 12px;
+        background: #fff;
+        cursor: pointer;
+        transition: all 0.3s;
+        padding: 0;
+
+        &:hover {
+          box-shadow: 0 2px 8px rgb(0 0 0 / 10%);
+          transform: translateY(-1px);
+        }
+
+        &:active {
+          transform: translateY(0);
+        }
+      }
+
+      .social-icon {
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        background-size: cover;
+      }
+
+      .social-icon.google {
+        background-image: url('/assets/img/social/google.svg');
+      }
+
       .register {
         float: right;
       }
