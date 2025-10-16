@@ -3,9 +3,6 @@
 // Auth - 認證核心
 export * from './auth';
 
-// ACL - 權限控制
-export * from './acl';
-
 // Event Bus - 事件匯流排
 export * from './event-bus';
 
