@@ -1,2 +1,2 @@
-export { provideBindAuthRefresh } from './refresh-token';
-export * from './default.interceptor';
+export { provideBindAuthRefresh } from './token.interceptor';
+export * from './auth.interceptor';

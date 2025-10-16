@@ -5,7 +5,7 @@ import { environment } from '@env/environment';
 import { Observable, of, throwError, mergeMap } from 'rxjs';
 
 import { ReThrowHttpError, checkStatus, getAdditionalHeaders, toLogin } from './helper';
-import { tryRefreshToken } from './refresh-token';
+import { tryRefreshToken } from './token.interceptor';
 
 function handleData(injector: Injector, ev: HttpResponseBase, req: HttpRequest<any>, next: HttpHandlerFn): Observable<any> {
   checkStatus(injector, ev);
