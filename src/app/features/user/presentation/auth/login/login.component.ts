@@ -120,7 +120,15 @@ export class UserLoginComponent implements OnDestroy {
 
   openGoogle(): void {
     const provider = new GoogleAuthProvider();
-    signInWithRedirect(this.auth, provider);
+    // 添加必要的 scope
+    provider.addScope('profile');
+    provider.addScope('email');
+
+    signInWithRedirect(this.auth, provider).catch(err => {
+      console.error('Google sign-in error:', err);
+      this.error = err?.message || 'Google 登入失敗';
+      this.cdr.detectChanges();
+    });
   }
 
   forgotPassword(): void {

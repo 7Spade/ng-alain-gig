@@ -7,7 +7,6 @@ import { Provider, EnvironmentProviders } from '@angular/core';
 import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
 import { getAuth, provideAuth as provideAuth_alias } from '@angular/fire/auth';
 import { getAnalytics, provideAnalytics, ScreenTrackingService, UserTrackingService } from '@angular/fire/analytics';
-import { initializeAppCheck, ReCaptchaEnterpriseProvider, provideAppCheck } from '@angular/fire/app-check';
 import { getApp } from '@angular/fire/app';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { getFunctions, provideFunctions } from '@angular/fire/functions';
@@ -16,8 +15,7 @@ import { getPerformance, providePerformance } from '@angular/fire/performance';
 import { getStorage, provideStorage } from '@angular/fire/storage';
 import { getRemoteConfig, provideRemoteConfig } from '@angular/fire/remote-config';
 
-import { getFirebaseConfig, getFirebaseAppCheckConfig } from './firebase-config';
-import { flush } from '@angular/core/testing';
+import { getFirebaseConfig } from './firebase-config';
 
 /**
  * Firebase 所有服務的 Providers 配置
@@ -46,23 +44,8 @@ export const firebaseProviders: Array<Provider | EnvironmentProviders> = [
   ScreenTrackingService,
   UserTrackingService,
 
-  // 4. Firebase App Check (安全驗證) - 條件式啟用
-  ...(getFirebaseAppCheckConfig()
-    ? [
-        provideAppCheck(() => {
-          const appCheckConfig = getFirebaseAppCheckConfig(); // 🚨 延遲載入配置
-          if (!appCheckConfig) {
-            throw new Error('App Check configuration is required but not available');
-          }
-
-          const provider = new ReCaptchaEnterpriseProvider(appCheckConfig.provider);
-          return initializeAppCheck(getApp(), {
-            provider,
-            isTokenAutoRefreshEnabled: appCheckConfig.isTokenAutoRefreshEnabled
-          });
-        })
-      ]
-    : []),
+  // 4. Firebase App Check (安全驗證) - 已完全停用
+  // App Check 已在 Firebase Console 中停用，不需要程式碼配置
 
   // 5. Firebase Firestore (資料庫)
   provideFirestore(() => getFirestore()),
