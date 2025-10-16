@@ -154,12 +154,6 @@ src/
 │   │   │   ├── startup.service.ts                     # 啟動服務
 │   │   │   └── startup.service.spec.ts                # 啟動服務測試
 │   │   │
-│   │   ├── net/                               # 網路服務 ✨ (現有)
-│   │   │   ├── default.interceptor.ts                 # 預設攔截器
-│   │   │   ├── refresh-token.ts                       # Token 刷新
-│   │   │   ├── helper.ts                              # 網路輔助工具
-│   │   │   └── index.ts                               # 網路模組匯出
-│   │   │
 │   │   ├── i18n/                              # 國際化服務 ✨ (現有)
 │   │   │   ├── i18n.service.ts                        # 國際化服務
 │   │   │   └── i18n.service.spec.ts                   # 國際化服務測試
